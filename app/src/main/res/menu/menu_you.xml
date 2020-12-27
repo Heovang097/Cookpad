@@ -11,6 +11,9 @@
         android:id = "@+id/Statics"
         android:title="Static"
         app:showAsAction="always"
-        android:icon = "@drawable/ic_static"
-        />
+        android:icon = "@drawable/ic_static"/>
+    <item android:id = "@+id/Setting"
+        android:title="Setting"
+        app:showAsAction = "always"
+        android:icon="@drawable/ic_setting"/>
 </menu>
