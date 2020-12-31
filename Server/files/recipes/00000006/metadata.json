@@ -1,0 +1,28 @@
+{
+ 		"name":"rice stir-fry",
+ 		"desc":"#home cook",
+ 		"nump":2,
+ 		"time":3600,
+ 		"ings": 			
+ 			[
+ 				"2kg apple",
+ 				"1kg salad",
+ 				"9l water"
+ 			],
+ 		"step":
+ 			[
+ 				{"desc":"wash fruits",
+ 					"img1":"files/recipes/00000006/step1img1",
+ 					"img2":"",
+ 					"img3":""},
+ 				{"desc":"slice fruits",
+ 					"img1":"files/recipes/00000006/step2img1",
+ 					"img2":"files/recipes/00000006/step2img2",
+ 					"img3":"files/recipes/00000006/step2img3"},
+ 				{"desc":"mix fruits",
+ 					"img1":"files/recipes/00000006/step3img1",
+ 					"img2":"",
+ 					"img3":""
+ 				}
+ 			]
+}

@@ -1,0 +1,28 @@
+{
+ 		"name":"Red meat cook",
+ 		"desc":"It's good to know how to properly cook red meat",
+ 		"nump":2,
+ 		"time":3600,
+ 		"ings": 			
+ 			[
+ 				"1kg pork",
+ 				"1kg salad",
+ 				"9l water"
+ 			],
+ 		"step":
+ 			[
+ 				{"desc":"wash meat",
+ 					"img1":"files/recipes/00000005/step1img1",
+ 					"img2":"",
+ 					"img3":""},
+ 				{"desc":"mix salad",
+ 					"img1":"files/recipes/00000005/step2img1",
+ 					"img2":"files/recipes/00000005/step2img2",
+ 					"img3":""},
+ 				{"desc":"cook meat",
+ 					"img1":"files/recipes/00000005/step3img1",
+ 					"img2":"",
+ 					"img3":""
+ 				}
+ 			]
+}
