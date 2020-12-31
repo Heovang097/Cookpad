@@ -1,14 +1,25 @@
 from django.db import models
 
 # Create your models here.
-class Account(models.Model):
-    name = models.CharField(max_length=50)
-    passw = models.CharField(max_length=50)
+#class Account(models.Model):
+#    name = models.CharField(max_length=50)
+#    passw = models.CharField(max_length=50)
+#
+#    def getAccName(self):
+#        return self.name
+#        pass
+#    def getAccPassw(self):
+#        return self.passw
+#        pass
+#
 
-    def getAccName(self):
-        return self.name
+class Faculty(models.Model):
+    name = models.CharField(max_length=255)
+    def getStudents(self):
+        return self.students 
         pass
-    def getAccPassw(self):
-        return self.passw
-        pass
+class Student(models.Model):
+    fullname = models.CharField(max_length=50)
+    faculty = models.ForeignKey(Faculty, related_name="students", on_delete=models.CASCADE)
+
 
