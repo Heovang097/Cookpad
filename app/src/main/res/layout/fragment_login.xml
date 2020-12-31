@@ -23,37 +23,50 @@
         android:layout_marginTop="160dp"
         android:padding="16dp">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/loginUsername"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Tên tài khoản"
-            app:startIconDrawable="@drawable/ic_username_24">
+            android:text="Tên tài khoản"
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+            />
+        <EditText
             android:id="@+id/loginPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu"
-            app:endIconMode="password_toggle"
-            app:startIconDrawable="@drawable/ic_password_24">
+            android:text="Mật  khẩu"
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+            />
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/loginUsername"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Tên tài khoản"-->
+<!--            app:startIconDrawable="@drawable/ic_username_24">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/loginPassword"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Mật khẩu"-->
+<!--            app:endIconMode="password_toggle"-->
+<!--            app:startIconDrawable="@drawable/ic_password_24">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="textPassword" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <Button
             android:id="@+id/btnLogin"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đăng nhập"
@@ -61,7 +74,6 @@
 
         <Button
             android:id="@+id/btnSignUp"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đăng Ký"
