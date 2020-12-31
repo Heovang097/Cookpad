@@ -1,0 +1,23 @@
+{
+ 		"name":"Noodle with pork and veggies",
+ 		"desc":"This is one of the best dish I ever made",
+ 		"nump":4,
+ 		"time":7200,
+ 		"ings": 			
+ 			[
+ 				"5g lemon",
+ 				"7kg salt",
+ 				"9l water"
+ 			],
+ 		"step":
+ 			[
+ 				{"desc":"pour salt into the water",
+ 					"img1":"files/recipes/00000001/step1img1",
+ 					"img2":"",
+ 					"img3":""},
+ 				{"desc":"twist lemon in",
+ 					"img1":"files/recipes/00000001/step2img1",
+ 					"img2":"files/recipes/00000001/step2img2",
+ 					"img3":""}
+ 			]
+}

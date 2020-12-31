@@ -17,25 +17,29 @@ class Account(models.Model):
     idUser = models.CharField(max_length = 8, primary_key=True)
     userName = models.CharField(max_length = 255)
     password = models.CharField(max_length = 255)
+    def getID(self):
+        return self.idUser
+        pass
 
 class Message(models.Model):
-    idUserSender = models.CharField(max_length = 8)
-    idUserReceiver = models.CharField(max_length = 8)
-    content = models.CharField(max_length = 255, null=False)
+    idUserSender = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    idUserReceiver = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    content = models.CharField(max_length = 200, null=False)
+    datetime = models.DateTimeField()
 
 class LikeUser(models.Model):
-    idUser = models.CharField(max_length = 8)
-    idUserTarget = models.CharField(max_length = 8)
+    idUser = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    idUserTarget = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
     date = models.DateField()
 
 class Follow(models.Model):
-    idUser = models.CharField(max_length = 8)
-    idUserTarget = models.CharField(max_length = 8)
+    idUser = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    idUserTarget = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
     date = models.DateField()
 
 class Like(models.Model):
-    idUser = models.CharField(max_length = 8)
-    idUserTarget = models.CharField(max_length = 8)
+    idUser = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    idUserTarget = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
     date = models.DateField()
 
 class Block(models.Model):
@@ -44,20 +48,22 @@ class Block(models.Model):
     date = models.DateField()
     content = models.CharField(max_length = 255)
 
-class LikeCmt(models.Model):
-    idUser = models.CharField(max_length = 8)
-    idCommentTarget = models.CharField(max_length = 8)
-
 class Recipes(models.Model):
     idRecipes = models.CharField(max_length = 8, primary_key=True)
-    content = models.CharField(max_length = 5000, null=False)
+    contentPath = models.CharField(max_length = 150, null=False)
+    isPublic = models.BooleanField(default=False)
 
 class CommentRecipe(models.Model):
     idComment = models.CharField(max_length = 8, primary_key=True)
     idUser = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
     idRecipes = models.ForeignKey(Recipes, related_name="+", on_delete=models.CASCADE)
-    idCommentTarget = models.ForeignKey('self', related_name="+", on_delete=models.CASCADE)
+    idCommentTarget = models.ForeignKey('self', related_name="+", on_delete=models.CASCADE, null=True, blank=True)
     content = models.CharField(max_length = 255)
+
+class LikeCmt(models.Model):
+    idUser = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    idCommentTarget = models.ForeignKey(CommentRecipe, related_name="+", on_delete=models.CASCADE)
+
 
 class RecipesUser(models.Model):
     idRecipes = models.CharField(max_length = 8)
@@ -65,13 +71,13 @@ class RecipesUser(models.Model):
     date = models.DateField()
 
 class LikeRecipes(models.Model):
-    idUser = models.CharField(max_length = 8)
-    idRecipes = models.CharField(max_length = 8)
+    idUser = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    idRecipes = models.ForeignKey(Recipes, related_name="+", on_delete=models.CASCADE)
     type = models.IntegerField()
-    
+
 class Share(models.Model):
-    idUser = models.ForeignKey(Recipes, related_name="+", on_delete=models.CASCADE)
-    idRecipes = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    idUser = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
+    idRecipes = models.ForeignKey(Recipes, related_name="+", on_delete=models.CASCADE)
     content = models.CharField(max_length = 255)
     date = models.DateField()
 
