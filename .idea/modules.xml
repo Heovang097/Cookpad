@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tabbed_Activity.iml" filepath="$PROJECT_DIR$/.idea/modules/Tabbed_Activity.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Tabbed_Activity.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Tabbed_Activity.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cookpad.iml" filepath="$PROJECT_DIR$/.idea/modules/Cookpad.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Cookpad.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Cookpad.app.iml" />
     </modules>
   </component>
 </project>

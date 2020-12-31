@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Tabbed Activity"
+rootProject.name = "Cookpad"
