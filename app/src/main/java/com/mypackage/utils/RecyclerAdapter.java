@@ -4,8 +4,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +45,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 //        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), card.getRecipe_image());
 //        holder.recipeImage.setImageBitmap(bitmap);
         holder.recipeName.setText(card.getRecipe_name());
+        holder.avatar.setImageResource(card.getAvatar());
+        holder.overflowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                popupMenu.inflate(R.menu.cardmenu);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        return true;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
 
     @Override
@@ -52,11 +71,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView username;
         SquareImageView recipeImage;
         TextView recipeName;
+        ImageView avatar;
+        ImageButton overflowButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.username);
             recipeImage = itemView.findViewById(R.id.recipeImage);
             recipeName = itemView.findViewById(R.id.recipeName);
+            avatar = itemView.findViewById((R.id.avatar));
+            overflowButton = itemView.findViewById((R.id.overflow_button));
         }
     }
 }

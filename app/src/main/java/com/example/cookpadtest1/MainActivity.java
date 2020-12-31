@@ -1,40 +1,30 @@
 package com.example.cookpadtest1;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import android.os.Bundle;
-import com.mypackage.utils.RecyclerAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
-import java.util.ArrayList;
+import android.app.ActionBar;
+import android.os.Bundle;
+import android.view.View;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
-    ArrayList recipes = new ArrayList<>();
+    private ViewPager2 viewPager;
+    private HomePagerAdapter pagerAdapter;
+    private String titles[] = new String[]{"Inspiration", "Your Network"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = findViewById(R.id.recyclerView);
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        addRecipes();
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, recipes);
-        recyclerView.setAdapter(recyclerAdapter);
-    }
-
-    private void addRecipes() {
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Pumpkin Spice Pancakes"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Red Velvet Marbled New York Cheesecake"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Raw mango chutney"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Purple rice"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Mother's Cassava Cake"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "10 min pasta"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "White Gingerbread Cookies"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Salamon in oven"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Duck pot pie"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Homemade cappuccino"));
-        recipes.add(new RecipeCard("cookie", R.drawable._55_jura, "Budget Carbonara"));
+//        ActionBar actionBar = getActionBar();
+//        actionBar.hide();
+        //getSupportActionBar().setElevation(0);
+        viewPager = findViewById(R.id.home_view_pager2);
+        pagerAdapter = new HomePagerAdapter(this);
+        viewPager.setAdapter(pagerAdapter);
+        TabLayout tabLayout = findViewById(R.id.home_tab_layout);
+        new TabLayoutMediator(tabLayout, viewPager, ((tab, position) -> tab.setText(titles[position]))).attach();
     }
 }
