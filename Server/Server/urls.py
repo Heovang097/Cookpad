@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
+from cookpad import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^44325', views.getLoginToken, name='login'),
+    url(r'^44357', views.getLogoutToken, name='logout'),
+    url(r'', views.pageNotFound, name='pagenotfound')
 ]

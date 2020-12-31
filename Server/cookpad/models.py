@@ -20,6 +20,10 @@ class Account(models.Model):
     def getID(self):
         return self.idUser
         pass
+    def getUserName(self):
+        return self.userName
+    def getPassword(self):
+        return self.password
 
 class Message(models.Model):
     idUserSender = models.ForeignKey(User, related_name="+", on_delete=models.CASCADE)
