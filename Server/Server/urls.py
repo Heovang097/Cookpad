@@ -1,4 +1,4 @@
-"""server0 URL Configuration
+"""Server URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,11 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url
-from cookpad import views
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
-    url(r'^$', views.check_account, name='home'),
-    url(r'^check_account', views.check_account, name='check_account')
+    path('admin/', admin.site.urls),
 ]

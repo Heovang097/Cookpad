@@ -1,7 +1,3 @@
 {
-    "python.pythonPath": "/home/hw/anaconda3/envs/serverev/bin/python",
-    "files.associations": {
-        "*.tpp": "cpp"
-    },
-    "terminal.integrated.shell.windows": "cmd.exe"
+    "python.linting.enabled": false
 }
