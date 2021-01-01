@@ -6,13 +6,13 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ca19b52-57cf-49a7-9d9a-d1b127678299" name="Default Changelist" comment="" />
+    <list default="true" id="ecc6a1ae-c972-4f5d-b14c-35d79288608e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="JUC4C18709004938" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[JUC4C18709004938]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -25,24 +25,44 @@
       </state>
     </system>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
-  <component name="ProjectId" id="1m3GiqXMK24Vez4a2DWT9zrsjrQ" />
+  <component name="ProjectId" id="1mPHDJcXSz1rfLBmRp9LWLWLJY9" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_API_30" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-23T13:15:11.443Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Android" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="android-custom-viewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/androidx.core/core/1.3.1/d70edd6d800903a31efea1a28ae531bd91e1a926/core-1.3.1-sources.jar!/androidx/core/widget/NestedScrollView.java_SELECTED" value="NestedScrollView" />
+    <property name="android-custom-viewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/bottomnavigation/BottomNavigationView.java_SELECTED" value="BottomNavigationView" />
+    <property name="android-custom-viewC:/Users/Heova/AndroidStudioProjects/Cookpad2/app/src/main/java/com/example/cookpad/utils/SquareImageView.java_SELECTED" value="SquareImageView" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="multi-representation-previewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/androidx.core/core/1.3.1/d70edd6d800903a31efea1a28ae531bd91e1a926/core-1.3.1-sources.jar!/androidx/core/widget/NestedScrollView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/bottomnavigation/BottomNavigationView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/Heova/AndroidStudioProjects/Cookpad2/app/src/main/java/com/example/cookpad/utils/SquareImageView.java_selected" value="Custom views" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RecentsManager">
+    <key name="android.template.71486231">
+      <recent name="com.example.cookpad.fragments.create.RecipeDetail" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.cookpad.utils" />
+      <recent name="com.example.cookpad" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\drawable" />
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\layout" />
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\java\com\example\cookpad\fragments" />
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\drawable-v24" />
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\menu" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -53,12 +73,13 @@
       </method>
     </configuration>
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="app" />
+      <module name="Cookpad.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -94,11 +115,16 @@
       </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
@@ -109,22 +135,70 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8ca19b52-57cf-49a7-9d9a-d1b127678299" name="Default Changelist" comment="" />
-      <created>1608714990166</created>
+      <changelist id="ecc6a1ae-c972-4f5d-b14c-35d79288608e" name="Default Changelist" comment="" />
+      <created>1609388184350</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1608714990166</updated>
+      <updated>1609388184350</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="484" y="253" key="#PSD" timestamp="1608731008974">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609391419235">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="484" y="253" key="#PSD/0.0.1920.1040@0.0.1920.1040" timestamp="1608731008974" />
-    <state x="747" y="276" key="FileChooserDialogImpl" timestamp="1608731014452">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609391419235" />
+    <state x="782" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1609501402659">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="747" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608731014452" />
+    <state x="782" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609501402659" />
+    <state x="743" y="388" width="502" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1609502688123">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="388" width="502" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1609502688123" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609501586927">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609501586927" />
+    <state x="1015" y="294" key="AndroidCreateXmlResourceDialog" timestamp="1609390195257">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1015" y="294" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609390195257" />
+    <state width="1877" height="347" key="GridCell.Tab.0.bottom" timestamp="1609504762731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609504762731" />
+    <state width="1877" height="347" key="GridCell.Tab.0.center" timestamp="1609504762731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609504762731" />
+    <state width="1877" height="347" key="GridCell.Tab.0.left" timestamp="1609504762731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609504762731" />
+    <state width="1877" height="347" key="GridCell.Tab.0.right" timestamp="1609504762731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609504762731" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1609504762731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609504762731" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1609504762731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609504762731" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1609504762731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609504762731" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1609504762731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609504762731" />
+    <state x="623" y="225" key="search.everywhere.popup" timestamp="1609501058647">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1609501058647" />
   </component>
 </project>
