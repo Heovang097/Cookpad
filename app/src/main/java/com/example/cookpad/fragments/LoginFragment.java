@@ -1,4 +1,4 @@
-package com.example.cookpad;
+package com.example.cookpad.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cookpad.MenuActivity;
+import com.example.cookpad.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginFragment extends Fragment {
@@ -60,7 +62,7 @@ public class LoginFragment extends Fragment {
         String password = ((EditText)getActivity().findViewById(R.id.loginPassword)).getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="http://192.168.1.3:8000/login?username="+ username +"&password="+password;
+        String url ="http://192.168.1.15:8765/44325?p="+ password +"&n="+username +"&c=9";
         Log.d("@@@", url);
 
         // Request a string response from the provided URL.
@@ -69,9 +71,11 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         Log.d("@@@", response);
-                        if (response == "TRUE") {
+                        if (response == "Login success") {
                             Toast toast = Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_LONG);
                             toast.show();
+                            Intent intent = new Intent(getContext(), MenuActivity.class);
+                            startActivity(intent);
                         }
                         else {
                             Toast toast = Toast.makeText(getActivity(), "Đăng nhập thất bại", Toast.LENGTH_LONG);
@@ -82,10 +86,9 @@ public class LoginFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("@@@", "error");
-                Toast toast = Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG);
                 toast.show();
-                Intent intent = new Intent(getContext(), MenuActivity.class);
-                startActivity(intent);
+
             }
         });
         // Add the request to the RequestQueue.

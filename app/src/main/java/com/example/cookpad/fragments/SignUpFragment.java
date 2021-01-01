@@ -1,4 +1,4 @@
-package com.example.cookpad;
+package com.example.cookpad.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cookpad.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpFragment extends Fragment {
