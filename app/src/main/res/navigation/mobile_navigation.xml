@@ -22,15 +22,26 @@
         android:name="com.example.cookpad.ui.create.CreateFragment"
         android:label="@string/title_create"
         tools:layout="@layout/fragment_create" />
+
     <fragment
         android:id="@+id/navigation_activity"
         android:name="com.example.cookpad.ui.activity.ActivityFragment"
         android:label="@string/title_activity"
         tools:layout="@layout/fragment_activity" />
+
     <fragment
         android:id="@+id/navigation_you"
         android:name="com.example.cookpad.ui.you.YouFragment"
         android:label="@string/title_you"
-        tools:layout="@layout/fragment_you" />
+        tools:layout="@layout/fragment_you" >
+        <action
+            android:id="@+id/action_navigation_you_to_navigation_your2"
+            app:destination="@id/navigation_your" />
+    </fragment>
 
+
+    <fragment
+        android:id="@+id/navigation_your"
+        android:name="com.example.cookpad.ui.you.YourFragment"
+        tools:layout="@layout/fragment_your"/>
 </navigation>

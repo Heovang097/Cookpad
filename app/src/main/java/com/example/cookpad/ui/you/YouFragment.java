@@ -1,14 +1,19 @@
 package com.example.cookpad.ui.you;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cookpad.R;
@@ -34,7 +39,24 @@ public class YouFragment extends Fragment {
         Toolbar toolbar = (Toolbar) (Toolbar) view.findViewById(R.id.toolbarYou);
         toolbar.setLogo(R.drawable.avatar);
         toolbar.setTitle(" Đoàn Văn Thanh An");
-
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.YourPage:
+                        Toast.makeText(getActivity(), "YourPage!", Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(getView()).navigate(R.id.navigation_your);
+                        return true;
+                    case R.id.UpdateInfo:
+                        Toast.makeText(getActivity(), "Update", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), UpdateActivity.class);
+                        startActivity(intent);
+                        return true;
+                }
+                Toast.makeText(getActivity(), "This is my Toast message!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pagerYou);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
