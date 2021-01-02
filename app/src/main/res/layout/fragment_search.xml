@@ -9,17 +9,12 @@
         android:id="@+id/edtsearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tran Duy Dat" />
+        android:text="This is Search Fragment" />
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tìm kiếm"
         android:textColor="@color/blue"/>
-    <androidx.recyclerview.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/search_pager">
-    </androidx.recyclerview.widget.RecyclerView>
+
 </LinearLayout>

@@ -20,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
 
 public class SignUpFragment extends Fragment {
@@ -51,7 +50,7 @@ public class SignUpFragment extends Fragment {
         String name = ((EditText) getActivity().findViewById(R.id.signUpName)).getText().toString();
         //Luu database
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="http://"+ NetWork.getNetworkInfoHolder().getSERVER() +"/44326?username="+ username +"&password="+password+"&name="+name;
+        String url ="http://192.168.1.3:8080/signup?username="+ username +"&password="+password+"&name="+name;
         Log.d("@@@", url);
 
         // Request a string response from the provided URL.
