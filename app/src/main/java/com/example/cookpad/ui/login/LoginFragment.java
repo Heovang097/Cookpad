@@ -30,7 +30,6 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
@@ -61,7 +60,7 @@ public class LoginFragment extends Fragment {
         String password = ((EditText)getActivity().findViewById(R.id.loginPassword)).getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="http://192.168.1.3:8080/44325?n="+ username +"&p="+password + "&c=9";
+        String url ="http://192.168.1.124:8012/44325?n="+ username +"&p="+password + "&c=9";
         Log.d("@@@", url);
 
         // Request a string response from the provided URL.
