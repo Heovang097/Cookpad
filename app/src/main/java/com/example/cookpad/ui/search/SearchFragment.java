@@ -54,7 +54,7 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         recyclerView = view.findViewById(R.id.search_pager);
-        EditText edtSearch = view.findViewById(R.id.edtsearch);
+        final EditText edtSearch = view.findViewById(R.id.edtsearch);
         Button btnSearch = view.findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
