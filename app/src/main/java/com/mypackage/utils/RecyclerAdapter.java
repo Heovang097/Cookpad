@@ -59,8 +59,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         });
 //        Picasso.get().load("http://192.168.1.124:8012/44340?id=" + card.getIdRecipe()).fit().into(holder.recipeImage);
 //        Picasso.get().load("http://192.168.1.124:8012/44341?id=" + card.getIdUser()).fit().into(holder.avatar);
-        Picasso.with(context).load("http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44340?id=" + card.getIdRecipe()).fit().into(holder.recipeImage);
-        Picasso.with(context).load("http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + card.getIdUser()).fit().into(holder.avatar);
+        Picasso.get().load("http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44340?id=" + card.getIdRecipe()).fit().into(holder.recipeImage);
+        Picasso.get().load("http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + card.getIdUser()).fit().into(holder.avatar);
     }
 
     @Override
