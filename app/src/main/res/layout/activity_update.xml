@@ -64,6 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateName">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -79,6 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateEmail">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Where"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Bạn đang sống ở đâu?"
@@ -94,6 +96,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateWhere">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Vài dòng về bạn và đam mê nấu nướng"
