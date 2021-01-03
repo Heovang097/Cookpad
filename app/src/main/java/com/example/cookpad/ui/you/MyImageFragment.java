@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.you;
+package com.example.cookpad.ui.you;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import com.example.cookpad.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link com.example.cookpad.fragments.you.MyRecipeFragment   #newInstance} factory method to
+ * Use the {@link com.example.cookpad.ui.you.MyImageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyRecipeFragment extends Fragment {
+public class MyImageFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ public class MyRecipeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MyRecipeFragment() {
+    public MyImageFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class MyRecipeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MyRecipeFragment.
+     * @return A new instance of fragment MyImageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static com.example.cookpad.fragments.you.MyRecipeFragment newInstance(String param1, String param2) {
-        com.example.cookpad.fragments.you.MyRecipeFragment fragment = new com.example.cookpad.fragments.you.MyRecipeFragment();
+    public static MyImageFragment newInstance(String param1, String param2) {
+        MyImageFragment fragment = new MyImageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,6 +60,6 @@ public class MyRecipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_recipe, container, false);
+        return inflater.inflate(R.layout.fragment_my_image, container, false);
     }
 }

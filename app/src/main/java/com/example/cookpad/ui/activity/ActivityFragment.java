@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.activity;
+package com.example.cookpad.ui.activity;
 
 import android.os.Bundle;
 

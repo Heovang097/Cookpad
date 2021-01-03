@@ -1,8 +1,6 @@
-package com.example.cookpad.fragments.create.AdapterItem;
+package com.example.cookpad.ui.create.AdapterItem;
 
 import android.graphics.Bitmap;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 

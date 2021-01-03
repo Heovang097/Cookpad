@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.create;
+package com.example.cookpad.ui.create;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cookpad.R;
-import com.example.cookpad.fragments.create.CreateRecipe.IngredientsAdapter;
-import com.example.cookpad.fragments.create.AdapterItem.ItemIngredients;
-import com.example.cookpad.fragments.create.AdapterItem.ItemMethod;
-import com.example.cookpad.fragments.create.CreateRecipe.MethodAdapter;
+import com.example.cookpad.ui.create.CreateRecipe.IngredientsAdapter;
+import com.example.cookpad.ui.create.AdapterItem.ItemIngredients;
+import com.example.cookpad.ui.create.AdapterItem.ItemMethod;
+import com.example.cookpad.ui.create.CreateRecipe.MethodAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

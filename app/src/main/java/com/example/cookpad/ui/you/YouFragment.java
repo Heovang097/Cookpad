@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.you;
+package com.example.cookpad.ui.you;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

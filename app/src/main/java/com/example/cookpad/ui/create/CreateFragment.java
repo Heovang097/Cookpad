@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.create;
+package com.example.cookpad.ui.create;
 
 import android.content.Context;
 import android.content.Intent;

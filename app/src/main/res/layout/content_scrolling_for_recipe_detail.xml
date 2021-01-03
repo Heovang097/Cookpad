@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.cookpad.fragments.create.CreateRecipeActivity"
+    tools:context="com.example.cookpad.ui.create.CreateRecipeActivity"
     tools:showIn="@layout/activity_create_recipe"
     android:clipToPadding="false"
     android:overScrollMode="never">

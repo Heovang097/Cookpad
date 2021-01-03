@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.create.RecipeDetail;
+package com.example.cookpad.ui.create.CreateRecipe;
 
 import android.content.Context;
 import android.text.Editable;
@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,19 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cookpad.R;
-import com.example.cookpad.fragments.create.AdapterItem.ItemMethod;
-import com.example.cookpad.fragments.create.CreateRecipe.StepImageAdapter;
-import com.example.cookpad.utils.SquareImageView;
+import com.example.cookpad.ui.create.AdapterItem.ItemMethod;
 
 import java.util.List;
 
-public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapter.MyViewHolder>  {
+public class MethodAdapter extends RecyclerView.Adapter<MethodAdapter.MyViewHolder> {
 
     public List<ItemMethod> items;
     public Context context;
-    View itemView;
 
-    public MethodDetailAdapter(List<ItemMethod> items,Context context) {
+    public MethodAdapter(List<ItemMethod> items,Context context) {
         this.items = items;
         this.context = context;
     }
@@ -40,9 +38,8 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_method_detail, parent, false);
-
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_method, parent, false);
         return new MyViewHolder(itemView, new MyCustomEditTextListener());
     }
 
@@ -52,7 +49,7 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
         holder.myCustomEditTextListener.updatePosition(holder.getAdapterPosition());
         holder.number.setText(items.get(position).getNumber());
         holder.step.setText(items.get(position).getStep());
-        holder.recyclerImage = itemView.findViewById(R.id.rv_step_image);
+        holder.recyclerImage = new RecyclerView(context);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         holder.recyclerImage.setLayoutManager(mLayoutManager);
         holder.recyclerImage.setItemAnimator(new DefaultItemAnimator());
@@ -66,7 +63,7 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
     }
 
     private class MyCustomEditTextListener implements TextWatcher {
-        public int position;
+        private int position;
 
         public void updatePosition(int position) {
             this.position = position;
@@ -90,13 +87,13 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView number;
-        public TextView step;
+        public EditText step;
         RecyclerView recyclerImage;
         public MyCustomEditTextListener myCustomEditTextListener;
         public MyViewHolder(View view, MyCustomEditTextListener myCustomEditTextListener) {
             super(view);
             number = (TextView) view.findViewById(R.id.tv_number);
-            step = (TextView) view.findViewById(R.id.tv_step);
+            step = (EditText) view.findViewById(R.id.tv_step);
             this.myCustomEditTextListener = myCustomEditTextListener;
             step.addTextChangedListener(myCustomEditTextListener);
             recyclerImage = view.findViewById(R.id.rv_step_image);

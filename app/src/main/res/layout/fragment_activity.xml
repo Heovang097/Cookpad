@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cookpad.fragments.activity.ActivityFragment">
+    tools:context="com.example.cookpad.ui.activity.ActivityFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

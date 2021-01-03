@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.create.RecipeDetail;
+package com.example.cookpad.ui.create.CreateRecipe;
 
 import android.content.Context;
 import android.text.Editable;
@@ -6,33 +6,40 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cookpad.R;
-import com.example.cookpad.fragments.create.AdapterItem.ItemIngredients;
+import com.example.cookpad.ui.create.AdapterItem.ItemIngredients;
 
 import java.util.List;
 
-public class IngredientsDetailAdapter extends RecyclerView.Adapter<IngredientsDetailAdapter.MyViewHolder> {
+public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.MyViewHolder> {
 
     List<ItemIngredients> items;
     private Context context;
 
+    public void add(ItemIngredients itemIngredients) {
+        items.add(itemIngredients);
+        notifyItemInserted(items.size() - 1);
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView name;
+        public EditText name;
+        public ImageButton button;
         public MyCustomEditTextListener myCustomEditTextListener;
         public MyViewHolder(View view, MyCustomEditTextListener myCustomEditTextListener) {
             super(view);
-            name = (TextView) view.findViewById(R.id.tv_name);
+            name = (EditText) view.findViewById(R.id.tv_name);
             this.myCustomEditTextListener = myCustomEditTextListener;
             name.addTextChangedListener(myCustomEditTextListener);
         }
     }
 
-    public IngredientsDetailAdapter(List<ItemIngredients> items,Context context) {
+    public IngredientsAdapter(List<ItemIngredients> items,Context context) {
         this.items = items;
         this.context = context;
     }
@@ -40,15 +47,9 @@ public class IngredientsDetailAdapter extends RecyclerView.Adapter<IngredientsDe
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_ingredients_detail, parent, false);
+                .inflate(R.layout.item_ingredients, parent, false);
         return new MyViewHolder(itemView, new MyCustomEditTextListener());
     }
-
-    public void add(ItemIngredients itemIngredients) {
-        items.add(itemIngredients);
-        notifyItemInserted(items.size() - 1);
-    }
-
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -65,11 +66,6 @@ public class IngredientsDetailAdapter extends RecyclerView.Adapter<IngredientsDe
         private int position;
         public void updatePosition(int position) {
             this.position = position;
-        }
-
-        public void add(ItemIngredients itemIngredients) {
-            items.add(itemIngredients);
-            notifyItemInserted(items.size() - 1);
         }
 
         @Override

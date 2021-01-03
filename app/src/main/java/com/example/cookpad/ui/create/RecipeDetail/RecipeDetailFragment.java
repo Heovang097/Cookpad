@@ -1,13 +1,10 @@
-package com.example.cookpad.fragments.create.RecipeDetail;
+package com.example.cookpad.ui.create.RecipeDetail;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -24,14 +21,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.R;
-import com.example.cookpad.fragments.create.AdapterItem.ItemIngredients;
-import com.example.cookpad.fragments.create.AdapterItem.ItemMethod;
-import com.squareup.picasso.Picasso;
+import com.example.cookpad.ui.create.AdapterItem.ItemIngredients;
+import com.example.cookpad.ui.create.AdapterItem.ItemMethod;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

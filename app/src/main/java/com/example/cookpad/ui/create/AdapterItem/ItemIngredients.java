@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.create.AdapterItem;
+package com.example.cookpad.ui.create.AdapterItem;
 
 public class ItemIngredients {
         public String name;

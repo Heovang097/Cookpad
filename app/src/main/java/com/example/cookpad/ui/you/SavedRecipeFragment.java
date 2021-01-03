@@ -1,4 +1,4 @@
-package com.example.cookpad.fragments.you;
+package com.example.cookpad.ui.you;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import com.example.cookpad.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link com.example.cookpad.fragments.you.SavedRecipeFragment#newInstance} factory method to
+ * Use the {@link com.example.cookpad.ui.you.SavedRecipeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class SavedRecipeFragment extends Fragment {

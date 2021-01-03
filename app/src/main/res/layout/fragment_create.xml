@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.cookpad.fragments.create.CreateFragment">
+    tools:context="com.example.cookpad.ui.create.CreateFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <Button
