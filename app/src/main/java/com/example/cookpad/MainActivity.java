@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
     private void checkStillLogin(String userID){
 
         String url = "http://"+ getResources().getString(R.string.serverSocket) +"/42519?id="+userID;
-        //setContentView(R.layout.activity_login);
 
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {

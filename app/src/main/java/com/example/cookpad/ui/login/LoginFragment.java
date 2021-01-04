@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.AccountInfo;
+import com.example.cookpad.NetWork;
 import com.example.cookpad.ui.activity.MainPageActivity;
 import com.example.cookpad.R;
 
@@ -73,6 +74,7 @@ public class LoginFragment extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         String url ="http://"+ getResources().getString(R.string.serverSocket) +"/44325?n="+ username +"&p="+password + "&c=9";
+
         Log.d("@@@", url);
 
         // Request a string response from the provided URL.
