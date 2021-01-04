@@ -98,7 +98,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("@@@", "error");
-                Toast toast = Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getActivity(), "Không thể kết nối tới server", Toast.LENGTH_LONG);
                 toast.show();
 
             }
@@ -120,7 +120,7 @@ public class LoginFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Không thể kết nối tới server", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(stringRequest);
@@ -131,6 +131,5 @@ public class LoginFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_ID, AccountInfo.getAccountInfoHolder().getUserID());
         editor.apply();
-        Toast.makeText(getActivity(), "Data saved:" +AccountInfo.getAccountInfoHolder().getUserID(), Toast.LENGTH_LONG).show();
     }
 }
