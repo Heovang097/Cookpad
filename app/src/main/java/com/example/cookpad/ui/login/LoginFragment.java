@@ -31,8 +31,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class LoginFragment extends Fragment {
     private static final String SHARED_PREFS = "SHARED_PREFS";
     private static final String USER_ID = "user_ID";
-    private static final String SERVER_IP = "192.168.122.1";
-    private static final String SERVER_PORT = "8012";
 
     @Nullable
     @Override
@@ -70,12 +68,11 @@ public class LoginFragment extends Fragment {
 
     private void login(View view)
     {
-
         String username = ((EditText)getActivity().findViewById(R.id.loginUsername)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.loginPassword)).getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="http://"+SERVER_IP+":"+SERVER_PORT+"/44325?n="+ username +"&p="+password + "&c=9";
+        String url ="http://"+ getResources().getString(R.string.serverSocket) +"/44325?n="+ username +"&p="+password + "&c=9";
         Log.d("@@@", url);
 
         // Request a string response from the provided URL.
@@ -111,7 +108,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void getUserIDtoAccountInfo(String username){
-        String url = "http://"+SERVER_IP+":"+SERVER_PORT+"/41111?n="+username;
+        String url = "http://"+ getResources().getString(R.string.serverSocket) +"/41111?n="+username;
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {

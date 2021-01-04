@@ -3,6 +3,7 @@ package com.example.cookpad;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,22 +16,23 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.ui.activity.MainPageActivity;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String SHARED_PREFS = "SHARED_PREFS";
     private static final String USER_ID = "user_ID";
-    private static final String SERVER_IP = "192.168.122.1";
-    private static final String SERVER_PORT = "8012";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         getPref();
         if(!AccountInfo.getAccountInfoHolder().getUserID().equals("")){
             checkStillLogin(AccountInfo.getAccountInfoHolder().getUserID());
         }
 
-        setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
 
         /*if(AccountInfo.getUserID().equals("")) {
         }else{
@@ -56,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkStillLogin(String userID){
-        String url = "http://"+SERVER_IP+":"+SERVER_PORT+"/42519?id="+userID;
+
+        String url = "http://"+ getResources().getString(R.string.serverSocket) +"/42519?id="+userID;
+        //setContentView(R.layout.activity_login);
 
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
