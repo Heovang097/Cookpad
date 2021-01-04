@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         >
         <activity android:name=".ui.you.UpdateActivity"></activity>
+        <activity android:name=".ViewImageActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".ui.activity.MainPageActivity"
             android:label="@string/app_name"

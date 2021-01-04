@@ -69,12 +69,12 @@ public class LoginFragment extends Fragment {
 
     private void login(View view)
     {
-
         String username = ((EditText)getActivity().findViewById(R.id.loginUsername)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.loginPassword)).getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="http://"+ NetWork.getNetworkInfoHolder().getSERVER()+"/44325?n="+ username +"&p="+password + "&c=9";
+        String url ="http://"+ getResources().getString(R.string.serverSocket) +"/44325?n="+ username +"&p="+password + "&c=9";
+
         Log.d("@@@", url);
 
         // Request a string response from the provided URL.
@@ -100,7 +100,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("@@@", "error");
-                Toast toast = Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getActivity(), "Không thể kết nối tới server", Toast.LENGTH_LONG);
                 toast.show();
 
             }
@@ -110,7 +110,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void getUserIDtoAccountInfo(String username){
-        String url = "http://"+NetWork.getNetworkInfoHolder().getSERVER()+"/41111?n="+username;
+        String url = "http://"+ getResources().getString(R.string.serverSocket) +"/41111?n="+username;
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -122,7 +122,7 @@ public class LoginFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Không thể kết nối tới server", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(stringRequest);
@@ -133,6 +133,5 @@ public class LoginFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_ID, AccountInfo.getAccountInfoHolder().getUserID());
         editor.apply();
-        Toast.makeText(getActivity(), "Data saved:" +AccountInfo.getAccountInfoHolder().getUserID(), Toast.LENGTH_LONG).show();
     }
 }

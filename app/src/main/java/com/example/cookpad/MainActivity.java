@@ -3,6 +3,7 @@ package com.example.cookpad;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.ui.activity.MainPageActivity;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String SHARED_PREFS = "SHARED_PREFS";
@@ -23,12 +26,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         getPref();
         if(!AccountInfo.getAccountInfoHolder().getUserID().equals("")){
             checkStillLogin(AccountInfo.getAccountInfoHolder().getUserID());
         }
 
-        setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
 
         /*if(AccountInfo.getUserID().equals("")) {
         }else{
@@ -54,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkStillLogin(String userID){
-        String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER()+"/42519?id="+userID;
+
+        String url = "http://"+ getResources().getString(R.string.serverSocket) +"/42519?id="+userID;
 
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
