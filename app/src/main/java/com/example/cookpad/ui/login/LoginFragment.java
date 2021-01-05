@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.AccountInfo;
+import com.example.cookpad.NetWork;
 import com.example.cookpad.ui.activity.MainPageActivity;
 import com.example.cookpad.R;
 
@@ -31,8 +32,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class LoginFragment extends Fragment {
     private static final String SHARED_PREFS = "SHARED_PREFS";
     private static final String USER_ID = "user_ID";
-    private static final String SERVER_IP = "192.168.1.9";
-    private static final String SERVER_PORT = "8000";
 
     @Nullable
     @Override
@@ -70,13 +69,14 @@ public class LoginFragment extends Fragment {
 
     private void login(View view)
     {
-
         String username = ((EditText)getActivity().findViewById(R.id.loginUsername)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.loginPassword)).getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="http://"+SERVER_IP+":"+SERVER_PORT+"/44325?n="+ username +"&p="+password + "&c=9";
+        String url ="http://"+ getResources().getString(R.string.serverSocket) +"/44325?n="+ username +"&p="+password + "&c=9";
+
         Log.d("@@@", url);
+
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -85,6 +85,7 @@ public class LoginFragment extends Fragment {
                         Log.d("@@@", response);
                         if (response.equals( "Login success")) {
                             getUserIDtoAccountInfo(username);
+
                             Toast toast = Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_LONG);
                             toast.show();
                             Intent intent = new Intent(getContext(), MainPageActivity.class);
@@ -99,7 +100,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("@@@", "error");
-                Toast toast = Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getActivity(), "Không thể kết nối tới server", Toast.LENGTH_LONG);
                 toast.show();
 
             }
@@ -109,7 +110,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void getUserIDtoAccountInfo(String username){
-        String url = "http://"+SERVER_IP+":"+SERVER_PORT+"/41111?n="+username;
+        String url = "http://"+ getResources().getString(R.string.serverSocket) +"/41111?n="+username;
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -121,7 +122,7 @@ public class LoginFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Không thể kết nối tới server", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(stringRequest);
@@ -132,6 +133,5 @@ public class LoginFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_ID, AccountInfo.getAccountInfoHolder().getUserID());
         editor.apply();
-        Toast.makeText(getActivity(), "Data saved:" +AccountInfo.getAccountInfoHolder().getUserID(), Toast.LENGTH_LONG).show();
     }
 }

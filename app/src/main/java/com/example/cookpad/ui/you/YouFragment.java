@@ -37,6 +37,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.AccountInfo;
+import com.example.cookpad.MainActivity;
+import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
 import com.example.cookpad.ui.activity.MainPageActivity;
 import com.example.cookpad.ui.home.RecipeCard;
@@ -44,6 +46,7 @@ import com.example.cookpad.ui.you.MyImageFragment;
 import com.example.cookpad.ui.you.MyRecipeFragment;
 import com.example.cookpad.ui.you.SavedRecipeFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +58,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class YouFragment extends Fragment {
     @Override
@@ -69,7 +76,7 @@ public class YouFragment extends Fragment {
         Toolbar toolbar = (Toolbar) (Toolbar) view.findViewById(R.id.toolbarYou);
         String url = "http://192.168.1.9:8000/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         TextView tv = (TextView) view.findViewById(R.id.YouName);
-        SharedPreferences sh = getActivity().getSharedPreferences("Info", Context.MODE_PRIVATE);
+        SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -97,7 +104,7 @@ public class YouFragment extends Fragment {
         });
         queue.add(jsonObjectRequest);
         url = getResources().getString(R.string.Url) + "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
-        ImageView avatar = (ImageView) view.findViewById(R.id.YouAvater);
+        CircleImageView avatar = (CircleImageView) view.findViewById(R.id.YouAvater);
         new YouFragment.DownloadImageTask(avatar).execute(url);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -112,6 +119,31 @@ public class YouFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), UpdateActivity.class);
                         getActivity().startActivityForResult(intent, 10001);
                         //startActivity(intent);
+                        return true;
+                    case R.id.Logout:
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+                        sharedPreferences.edit().remove("user_ID").commit();
+                        String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER()+"/42532?id="+ AccountInfo.getAccountInfoHolder().getUserID();
+                        RequestQueue queue = Volley.newRequestQueue(getContext());
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                if(response.equals("Yes")){
+                                    Toast.makeText(getActivity(), "Log out success", Toast.LENGTH_SHORT).show();
+                                    Intent intent1 = new Intent(getActivity(), MainActivity.class);
+                                    startActivity(intent1);
+                                }
+                                else{
+
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                        queue.add(stringRequest);
                         return true;
                 }
                 Toast.makeText(getActivity(), "This is my Toast message!", Toast.LENGTH_SHORT).show();
@@ -196,7 +228,7 @@ public class YouFragment extends Fragment {
     public void onResume() {
         super.onResume();
         TextView tv = (TextView) getActivity().findViewById(R.id.YouName);
-        SharedPreferences sh = getActivity().getSharedPreferences("Info", Context.MODE_PRIVATE);
+        SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
         SharedPreferences.OnSharedPreferenceChangeListener prefListener =
                 new SharedPreferences.OnSharedPreferenceChangeListener() {
                     public void onSharedPreferenceChanged(SharedPreferences prefs,

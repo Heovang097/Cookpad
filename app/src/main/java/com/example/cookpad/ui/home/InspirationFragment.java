@@ -1,5 +1,6 @@
 package com.example.cookpad.ui.home;
 
+import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
 
 import android.os.Bundle;
@@ -50,9 +51,9 @@ public class InspirationFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        String url = "http://192.168.1.9:8000/";
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44335";
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url + "44335", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d("debug", response.toString());
