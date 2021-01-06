@@ -83,7 +83,7 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         Log.d("@@@", response);
-                        if (response.equals( "Login success")) {
+                        if (response.equals( "Login success") || response.equals("Already login")) {
                             getUserIDtoAccountInfo(username);
 
                             Toast toast = Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_LONG);

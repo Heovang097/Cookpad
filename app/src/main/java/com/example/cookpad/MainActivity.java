@@ -20,17 +20,10 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String SHARED_PREFS = "SHARED_PREFS";
-    private static final String USER_ID = "user_ID";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getPref();
-        if(!AccountInfo.getAccountInfoHolder().getUserID().equals("")){
-            checkStillLogin(AccountInfo.getAccountInfoHolder().getUserID());
-        }
 
         //setContentView(R.layout.activity_login);
 
@@ -50,35 +43,6 @@ public class MainActivity extends AppCompatActivity {
 //        TabLayout tabs = findViewById(R.id.tabs);
 //        tabs.setupWithViewPager(viewPager);
     }
-    private String getPref(){
-        SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String userID = sharedPreferences.getString(USER_ID, "");
-        AccountInfo.getAccountInfoHolder().setupInfo(userID);
-        return userID;
-    }
 
-    private void checkStillLogin(String userID){
-
-        String url = "http://"+ getResources().getString(R.string.serverSocket) +"/42519?id="+userID;
-
-        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Yes")){
-                    Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
-                    startActivity(intent);
-                }else{
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
-            }
-        });
-        queue.add(stringRequest);
-
-    }
 
 }

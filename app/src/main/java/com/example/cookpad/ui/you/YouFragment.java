@@ -123,7 +123,7 @@ public class YouFragment extends Fragment {
                     case R.id.Logout:
                         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
                         sharedPreferences.edit().remove("user_ID").commit();
-                        String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER()+"/42532?id="+ AccountInfo.getAccountInfoHolder().getUserID();
+                        String url = "http://"+ getResources().getString(R.string.serverSocket)+"/42532?id="+ AccountInfo.getAccountInfoHolder().getUserID();
                         RequestQueue queue = Volley.newRequestQueue(getContext());
                         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                             @Override
