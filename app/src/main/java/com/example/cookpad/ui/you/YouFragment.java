@@ -111,11 +111,9 @@ public class YouFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.YourPage:
-                        Toast.makeText(getActivity(), "YourPage!", Toast.LENGTH_SHORT).show();
-                        Navigation.findNavController(getView()).navigate(R.id.navigation_your);
+                        Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_navigation_you_to_navigation_your2);
                         return true;
                     case R.id.UpdateInfo:
-                        Toast.makeText(getActivity(), "Update", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), UpdateActivity.class);
                         getActivity().startActivityForResult(intent, 10001);
                         //startActivity(intent);
