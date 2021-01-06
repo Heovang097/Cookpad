@@ -1,5 +1,6 @@
 package com.example.cookpad.ui.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,8 +28,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cookpad.MainActivity;
 import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
+import com.example.cookpad.StartupActivity;
+import com.example.cookpad.ui.activity.MainPageActivity;
+import com.example.cookpad.ui.create.RecipeDetail.RecipeDetailFragment;
 import com.example.cookpad.ui.home.InspirationFragment;
 import com.example.cookpad.ui.home.RecipeCard;
 import com.mypackage.utils.RecyclerAdapter;
@@ -54,6 +60,7 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         recyclerView = view.findViewById(R.id.search_pager);
+
         final EditText edtSearch = view.findViewById(R.id.edtsearch);
         Button btnSearch = view.findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +104,17 @@ public class SearchFragment extends Fragment {
                     }
                 });
                 queue.add(jsonObjectRequest);
+
                 recyclerAdapter = new RecyclerAdapter(view.getContext(), recipes);
+                recyclerAdapter.setOnItemClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String id = "00000001";
+                        Toast.makeText(getContext(), "How to start new fragment recipe view with recipe id: 00000001", Toast.LENGTH_SHORT).show();
+                        //FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                        //fragmentTransaction.replace(R.id.fragment_container_view_tag, new RecipeDetailFragment());
+                    }
+                });
                 recyclerView.setAdapter(recyclerAdapter);
             }
         });

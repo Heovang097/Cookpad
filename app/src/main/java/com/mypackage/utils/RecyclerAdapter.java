@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +24,11 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     Context context;
     ArrayList recipes;
-
+    View.OnClickListener onItemClickListenerHolder;
     public RecyclerAdapter(Context context, ArrayList recipes) {
         this.context = context;
         this.recipes = recipes;
+        this.onItemClickListenerHolder = null;
     }
 
     @NonNull
@@ -68,13 +70,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return recipes.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView username;
         SquareImageView recipeImage;
         TextView recipeName;
         ImageView avatar;
         ImageButton overflowButton;
         TextView like;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.username);
@@ -84,5 +87,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             overflowButton = itemView.findViewById((R.id.overflow_button));
             like = itemView.findViewById(R.id.likeCounter);
         }
+        @Override
+        public void onClick(View view) {
+            if(onItemClickListenerHolder != null){
+                onItemClickListenerHolder.onClick(view);
+            }
+        }
+    }
+    public void setOnItemClickListener(View.OnClickListener onClickListener){
+        this.onItemClickListenerHolder = onClickListener;
     }
 }
