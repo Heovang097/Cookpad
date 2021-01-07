@@ -108,7 +108,7 @@ public class RecipeDetailFragment extends Fragment {
                             tv_recipe_name.setText(response.getString("name"));
                             tv_khau_phan.setText(response.getString("nump"));
                             tv_mo_ta.setText(response.getString("desc"));
-                            String tg = decimalFormat.format((float)Integer.valueOf(response.getString("time"))/3600);
+                            String tg = decimalFormat.format((float)Integer.valueOf(response.getString("time"))/3600) + "h";
                             tv_thoi_gian.setText(tg);
                             JSONArray ings = response.getJSONArray("ings");
                             JSONArray steps = response.getJSONArray("step");
@@ -123,7 +123,7 @@ public class RecipeDetailFragment extends Fragment {
                             for (int i =0;i<steps.length();i++)
                             {
                                 //String number = String.valueOf(mMethodAdapter.getItemCount());
-                                String number = String.valueOf(i);
+                                String number = String.valueOf(i + 1);
                                 String desc = steps.getJSONObject(i).getString("desc");
                                 ArrayList<String> imagePaths = new ArrayList<>();
                                 for (int j =0 ;j<3;j++)
