@@ -34,6 +34,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.AccountInfo;
+import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
 import com.example.cookpad.ui.activity.MainPageActivity;
 import com.google.android.material.textfield.TextInputEditText;
@@ -53,7 +54,7 @@ public class UpdateActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         EditText ed = findViewById(R.id.Name);
         ed.setText("abc", TextView.BufferType.EDITABLE);
-        String url = getResources().getString(R.string.Url) + "info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        String url = NetWork.getNetworkInfoHolder().getSERVER() + "info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         TextInputEditText name = findViewById(R.id.Name);
         TextInputEditText email = findViewById(R.id.Email);
         TextInputEditText country = findViewById(R.id.Where);
@@ -65,7 +66,7 @@ public class UpdateActivity extends AppCompatActivity {
         email.setText(sh.getString("email", ""));
         country.setText(sh.getString("country", ""));
         intro.setText(sh.getString("intro", ""));
-        url = getResources().getString(R.string.Url) + "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        url = NetWork.getNetworkInfoHolder().getSERVER()+ "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         Log.d("@@@", url);
         new DownloadImageTask(avatar).execute(url);
         item.setOnClickListener(new View.OnClickListener(){
@@ -82,7 +83,7 @@ public class UpdateActivity extends AppCompatActivity {
         String sIntro =  intro.getText().toString();
         String url = null;
         try {
-            url = getResources().getString(R.string.Url) + "change?id=" + AccountInfo.getAccountInfoHolder().getUserID()
+            url = NetWork.getNetworkInfoHolder().getSERVER() + "change?id=" + AccountInfo.getAccountInfoHolder().getUserID()
                     +"&name="+URLEncoder.encode(sName)+"&email="+URLEncoder.encode(sEmail)+
                     "&country="+URLEncoder.encode(sCountry)+"&intro="+URLEncoder.encode(sIntro);
         } catch (Exception e) {

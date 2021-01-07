@@ -5,11 +5,11 @@ public class NetWork {
     private String SERVER ;
 
     private NetWork(){
-        SERVER="192.168.1.9:8000";
+        SERVER="192.168.122.1:8999";
     }
     public static NetWork getNetworkInfoHolder(){
         if(obj==null){
-            synchronized (AccountInfo.class){
+            synchronized (NetWork.class){
                 if(obj==null){
                     obj=new NetWork();
                 }
