@@ -3,10 +3,12 @@ package com.example.cookpad.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -59,6 +61,15 @@ public class FActivity extends AppCompatActivity {
                     peopleListViewAdapter = new PeopleListViewAdapter(listPeople);
                     listViewPeople = findViewById(R.id.Flist);
                     listViewPeople.setAdapter(peopleListViewAdapter);
+                    listViewPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            People people = (People) peopleListViewAdapter.getItem(position);
+                            Intent intent = new Intent(FActivity.this, PeopleActivity.class);
+                            intent.putExtra("id", people.sId);
+                            startActivity(intent);
+                        }
+                    });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -115,9 +126,9 @@ public class FActivity extends AppCompatActivity {
                 viewPeople = View.inflate(parent.getContext(), R.layout.layout_people, null);
             } else viewPeople = convertView;
             People people = (People) getItem(position);
-            ((TextView) viewPeople.findViewById(R.id.peopleName)).setText(people.name);
-            ((TextView) viewPeople.findViewById(R.id.peopleNum)).setText(" " + people.amountRecipe.toString());
-            TextView friend = viewPeople.findViewById(R.id.peopleFriend);
+            ((TextView) viewPeople.findViewById(R.id.layoutPeopleName)).setText(people.name);
+            ((TextView) viewPeople.findViewById(R.id.layoutPeopleNum)).setText(" " + people.amountRecipe.toString());
+            TextView friend = viewPeople.findViewById(R.id.layoutPeopleFriend);
             if (people.isFriend.booleanValue() == true) {
                 friend.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_confirm,0,0,0);
                 friend.setText("BẠN BẾP");
@@ -126,7 +137,7 @@ public class FActivity extends AppCompatActivity {
                 friend.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                 friend.setText("KẾT BẠN BẾP");
             }
-            CircleImageView avatar = viewPeople.findViewById(R.id.peopleAvatar);
+            CircleImageView avatar = viewPeople.findViewById(R.id.layoutPeopleAvatar);
             String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + "44341?id=" + people.sId;
             Picasso.get().load(url).into(avatar);
             return viewPeople;

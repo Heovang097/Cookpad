@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/peopleAvatar"
+        android:id="@+id/layoutPeopleAvatar"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/peopleName"
+        android:id="@+id/layoutPeopleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -22,21 +22,21 @@
         android:scrollHorizontally="true"
         android:textColor="#000000"
         android:text="NAME NAME"
-        app:layout_constraintStart_toEndOf="@id/peopleAvatar"
+        app:layout_constraintStart_toEndOf="@id/layoutPeopleAvatar"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/peopleNum"
+        android:id="@+id/layoutPeopleNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:drawableLeft="@drawable/ic_recipe"
         android:textColor="#696969"
-        app:layout_constraintStart_toEndOf="@id/peopleAvatar"
-        app:layout_constraintTop_toBottomOf="@id/peopleName"/>
+        app:layout_constraintStart_toEndOf="@id/layoutPeopleAvatar"
+        app:layout_constraintTop_toBottomOf="@id/layoutPeopleName"/>
 
     <Button
-        android:id="@+id/peopleFriend"
+        android:id="@+id/layoutPeopleFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

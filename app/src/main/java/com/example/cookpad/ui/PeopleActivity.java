@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.cookpad.R;
+
 public class PeopleActivity extends AppCompatActivity {
 
     @Override
