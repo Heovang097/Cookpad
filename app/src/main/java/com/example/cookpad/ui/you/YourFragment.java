@@ -35,8 +35,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.content.Context.MODE_PRIVATE;
 
 public class YourFragment extends Fragment {
-    Bundle follow = new Bundle();
-    Bundle friend = new Bundle();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,33 +50,16 @@ public class YourFragment extends Fragment {
         //Follow and Friend
         TextView tvNumberFollow = view.findViewById(R.id.YourNumberFollow);
         TextView tvNumberFriend = view.findViewById(R.id.YourNumberFriend);
-        url = getResources().getString(R.string.Url) + "ff?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        url = getResources().getString(R.string.Url) + "fnum?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         Log.d("@@@", url);
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        follow.putString("name", "follow");
-        follow.putString("tittle", "Người quan tâm");
-        friend.putString("name", "friend");
-        friend.putString("tittle", "Bạn bếp");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    //Follow
-                    JSONObject jsonFollow = response.getJSONObject("follow");
-                    Integer num = (Integer) jsonFollow.getInt("amount");
-                    follow.putInt("amount", num);
-                    ArrayList<Integer> arrayList = new ArrayList<Integer>();
-                    for (Integer i=0; i<num; i++)
-                        arrayList.add((Integer) jsonFollow.getInt(i.toString()));
-                    follow.putIntegerArrayList("array", arrayList);
+                    Integer num = response.getInt("follow");
                     tvNumberFollow.setText(num.toString());
-                    JSONObject jsonFriend = response.getJSONObject("friend");
-                    //Friend
-                    num = (Integer) jsonFriend.getInt("amount");
-                    friend.putInt("amount", num);
-                    arrayList.clear();
-                    for (Integer i=0; i<num; i++)
-                        arrayList.add((Integer) jsonFriend.getInt(i.toString()));
+                    num = (Integer) response.getInt("friend");
                     tvNumberFriend.setText(num.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -94,27 +75,27 @@ public class YourFragment extends Fragment {
         tvNumberFollow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                openF(follow);
+                startFollow();
             }
         });
         TextView tvFollow = view.findViewById(R.id.YourFollow);
         tvFollow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                openF(follow);
+                startFollow();
             }
         });
         tvNumberFriend.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                openF(friend);
+                startFriend();
             }
         });
         TextView tvFriend = view.findViewById(R.id.YourFriend);
         tvFriend.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                openF(friend);
+                startFriend();
             }
         });
         Toolbar toolbar = view.findViewById(R.id.toolbarYour);
@@ -134,13 +115,23 @@ public class YourFragment extends Fragment {
         });
         return view;
     }
-    private void openF(Bundle b){
+
+    private void startFollow(){
         Intent intent = new Intent(getActivity(), FActivity.class);
-        intent.putExtra("name", b.getString("name"));
-        intent.putExtra("amount", b.getInt("amount"));
-        intent.putExtra("array", b.getIntegerArrayList("array"));
+        intent.putExtra("name", "follow");
+        intent.putExtra("tittle", " Người quan tâm");
+        intent.putExtra("id", AccountInfo.getAccountInfoHolder().getUserID());
         startActivity(intent);
     }
+
+    private void startFriend(){
+        Intent intent = new Intent(getActivity(), FActivity.class);
+        intent.putExtra("name", "friend");
+        intent.putExtra("tittle", " Bạn bếp");
+        intent.putExtra("id", AccountInfo.getAccountInfoHolder().getUserID());
+        startActivity(intent);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
