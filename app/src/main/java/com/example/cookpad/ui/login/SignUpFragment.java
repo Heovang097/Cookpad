@@ -76,7 +76,7 @@ public class SignUpFragment extends Fragment {
         }
         //Luu database
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="http://"+ getResources().getString(R.string.serverSocket) +"/44326?username="+ username +"&password="+password+"&name="+name;
+        String url ="http://"+ NetWork.getNetworkInfoHolder().getSERVER() +"/44326?username="+ username +"&password="+password+"&name="+name;
         Log.d("@@@", url);
 
         // Request a string response from the provided URL.

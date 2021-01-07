@@ -95,7 +95,7 @@ public class SearchFragment extends Fragment {
                 StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
                 recyclerView.setLayoutManager(staggeredGridLayoutManager);
                 Log.d("@@@", edtSearch.getText().toString());
-                String url = "http://" + getResources().getString(R.string.serverSocket) + "/44336?search=" + edtSearch.getText();
+                String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44336?search=" + edtSearch.getText();
                 Log.d("@@@", url);
                 RequestQueue queue = Volley.newRequestQueue(getContext());
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
