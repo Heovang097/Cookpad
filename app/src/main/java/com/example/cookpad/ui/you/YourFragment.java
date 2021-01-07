@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.AccountInfo;
+import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
 import com.example.cookpad.ui.FActivity;
 import com.squareup.picasso.Picasso;
@@ -41,7 +42,7 @@ public class YourFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_your, container, false);
         //Circle View
         CircleImageView avatar = (CircleImageView) view.findViewById(R.id.YourAvatar);
-        String url = getResources().getString(R.string.Url) + "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         Picasso.get().load(url).into(avatar);
         //Name
         TextView tv = view.findViewById(R.id.YourName);
@@ -50,7 +51,7 @@ public class YourFragment extends Fragment {
         //Follow and Friend
         TextView tvNumberFollow = view.findViewById(R.id.YourNumberFollow);
         TextView tvNumberFriend = view.findViewById(R.id.YourNumberFriend);
-        url = getResources().getString(R.string.Url) + "fnum?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/fnum?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

@@ -103,7 +103,7 @@ public class YouFragment extends Fragment {
             }
         });
         queue.add(jsonObjectRequest);
-        url = getResources().getString(R.string.Url) + "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         CircleImageView avatar = (CircleImageView) view.findViewById(R.id.YouAvater);
         new YouFragment.DownloadImageTask(avatar).execute(url);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
