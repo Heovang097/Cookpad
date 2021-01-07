@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +24,11 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     Context context;
     ArrayList recipes;
-
+    RecyclerOnItemClickListener onItemClickListenerHolder;
     public RecyclerAdapter(Context context, ArrayList recipes) {
         this.context = context;
         this.recipes = recipes;
+        this.onItemClickListenerHolder = null;
     }
 
     @NonNull
@@ -43,6 +45,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.username.setText(card.getUsername());
         holder.recipeName.setText(card.getRecipe_name());
         holder.like.setText(String.valueOf(card.getLike_counter()));
+        holder.recipeId = card.getIdRecipe();
         holder.overflowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,13 +71,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return recipes.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView username;
         SquareImageView recipeImage;
         TextView recipeName;
         ImageView avatar;
         ImageButton overflowButton;
         TextView like;
+        String recipeId=null;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.username);
@@ -83,6 +88,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             avatar = itemView.findViewById((R.id.avatar));
             overflowButton = itemView.findViewById((R.id.overflow_button));
             like = itemView.findViewById(R.id.likeCounter);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            if(onItemClickListenerHolder != null){
+                onItemClickListenerHolder.onItemClick(recipeId);
+            }
+        }
+    }
+    public void setOnItemClickListener(RecyclerOnItemClickListener onClickListener){
+        this.onItemClickListenerHolder = onClickListener;
+    }
+    public interface RecyclerOnItemClickListener{
+        public void onItemClick(String recipeId);
     }
 }

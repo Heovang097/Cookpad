@@ -9,12 +9,13 @@
         android:id="@+id/edtsearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tran Duy Dat" />
+        android:hint="Search by recipe"
+        android:maxLength="30"/>
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tìm kiếm"
+        android:text="Search"
         android:textColor="@color/blue"/>
     <androidx.recyclerview.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"

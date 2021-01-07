@@ -21,11 +21,10 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/imageThumbnailRecipeDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@drawable/pho_bo"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax"
                 />
