@@ -41,6 +41,8 @@
         android:id="@+id/navigation_recipe_detail"
         android:name="com.example.cookpad.ui.create.RecipeDetail.RecipeDetailFragment"
         android:label="@string/title_recipe_detail"
-        tools:layout="@layout/fragment_recipe_detail"/>
+        tools:layout="@layout/fragment_recipe_detail"
+
+        />
 
 </navigation>

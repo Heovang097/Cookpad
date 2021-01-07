@@ -38,6 +38,7 @@ public class RecipeDetailFragment extends Fragment {
     private MethodDetailAdapter mMethodAdapter;
     TextView tv_recipe_name,tv_mo_ta,tv_khau_phan,tv_thoi_gian;
 
+    private String UserID = "00000001";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -71,7 +72,7 @@ public class RecipeDetailFragment extends Fragment {
     }
 
     private void fetchData() {
-        String url = "http://192.168.1.8:8999/44439?id=00000001";
+        String url = "http://192.168.1.85:8999/44439?id=" + UserID;
         final ArrayList<ItemIngredients> ingList = new ArrayList<>();
         final ArrayList<ItemMethod> mtdList = new ArrayList<>();
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -107,9 +108,9 @@ public class RecipeDetailFragment extends Fragment {
                                     String path = steps.getJSONObject(i).getString("img" + String.valueOf(j+1));
                                     if(path != null)
                                     {
-                                        path =  "http://192.168.1.8:8999/44429?path=" + path.replace("/","%2F");
-                                        imagePaths.add(path);
-                                    }
+                                    path =  "http://192.168.1.85:8999/44429?path=" + path.replace("/","%2F");
+                                    imagePaths.add(path);
+                                }
                                     else
                                     {
                                         break;

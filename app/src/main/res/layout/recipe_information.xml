@@ -7,11 +7,13 @@
     tools:showIn="@layout/content_scrolling">
 
     <EditText
+        android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tên món ăn: Cơm mẹ nấu" />
 
     <EditText
+        android:id="@+id/et_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Một chút mô tả về món ăn của bạn nhé! Bạn nấu nó trong hoàn cảnh nào? Món ăn này có ý nghĩa là gì?" />
@@ -29,6 +31,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:id="@+id/et_nump"
             android:hint="2 người" />
     </LinearLayout>
     <LinearLayout
@@ -42,6 +45,7 @@
             android:layout_height="wrap_content"
             android:text="Thời gian"/>
         <EditText
+            android:id="@+id/et_time"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
