@@ -43,12 +43,37 @@ public class SignUpFragment extends Fragment {
                 signUp(v);
             }
         });
+        Button btnBackLogin = getActivity().findViewById(R.id.btnBackLogin);
+        btnBackLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_signUpFragment_to_loginFragment);
+            }
+        });
     }
 
     private void signUp(final View view) {
         String username = ((EditText) getActivity().findViewById(R.id.signUpUsername)).getText().toString();
         String password = ((EditText) getActivity().findViewById(R.id.signUpPassword)).getText().toString();
         String name = ((EditText) getActivity().findViewById(R.id.signUpName)).getText().toString();
+        if(username.equals(""))
+        {
+            Toast toast = Toast.makeText(getActivity(), "Bạn chưa nhập username!!!", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+        if(password.equals(""))
+        {
+            Toast toast = Toast.makeText(getActivity(), "Bạn chưa nhập password!!!", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+        if(name.equals(""))
+        {
+            Toast toast = Toast.makeText(getActivity(), "Bạn chưa nhập name!!!", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
         //Luu database
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         String url ="http://"+ getResources().getString(R.string.serverSocket) +"/44326?username="+ username +"&password="+password+"&name="+name;
@@ -70,7 +95,7 @@ public class SignUpFragment extends Fragment {
                             toast.show();
                         }
                         else{
-                            Toast toast = Toast.makeText(getActivity(), "Đăng ký tthất bại", Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(getActivity(), "Đăng ký thất bại", Toast.LENGTH_LONG);
                             toast.show();
                         }
                     }

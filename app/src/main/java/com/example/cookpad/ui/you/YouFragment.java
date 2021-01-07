@@ -74,7 +74,7 @@ public class YouFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_you, container, false);
         Toolbar toolbar = (Toolbar) (Toolbar) view.findViewById(R.id.toolbarYou);
-        String url = "http://192.168.1.9:8000/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        String url = "http://"+ getResources().getString(R.string.serverSocket) + "/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         TextView tv = (TextView) view.findViewById(R.id.YouName);
         SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(getContext());
