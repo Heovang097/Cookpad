@@ -40,6 +40,11 @@ public class FActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f);
         getSupportActionBar().hide();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarF);
         listPeople = new ArrayList<>();
         listViewPeople = findViewById(R.id.Flist);
@@ -137,7 +142,6 @@ public class FActivity extends AppCompatActivity {
                         friend.setText("KẾT BẠN BẾP");
                     }
                     else {
-                        
                     }
                 }
             });
@@ -150,6 +154,7 @@ public class FActivity extends AppCompatActivity {
                     People people = (People) peopleListViewAdapter.getItem(position);
                     Intent intent = new Intent(FActivity.this, PeopleActivity.class);
                     intent.putExtra("id", people.sId);
+                    intent.putExtra("name", people.name);
                     Log.d("@@@", people.toString());
                     startActivity(intent);
                 }
