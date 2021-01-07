@@ -74,7 +74,7 @@ public class YouFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_you, container, false);
         Toolbar toolbar = (Toolbar) (Toolbar) view.findViewById(R.id.toolbarYou);
-        String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER() + "/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        String url = "http://192.168.1.9:8000/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         TextView tv = (TextView) view.findViewById(R.id.YouName);
         SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -103,7 +103,7 @@ public class YouFragment extends Fragment {
             }
         });
         queue.add(jsonObjectRequest);
-        url = NetWork.getNetworkInfoHolder().getSERVER() + "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        url = getResources().getString(R.string.Url) + "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         CircleImageView avatar = (CircleImageView) view.findViewById(R.id.YouAvater);
         new YouFragment.DownloadImageTask(avatar).execute(url);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -111,11 +111,9 @@ public class YouFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.YourPage:
-                        Toast.makeText(getActivity(), "YourPage!", Toast.LENGTH_SHORT).show();
-                        Navigation.findNavController(getView()).navigate(R.id.navigation_your);
+                        Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_navigation_you_to_navigation_your2);
                         return true;
                     case R.id.UpdateInfo:
-                        Toast.makeText(getActivity(), "Update", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), UpdateActivity.class);
                         getActivity().startActivityForResult(intent, 10001);
                         //startActivity(intent);
