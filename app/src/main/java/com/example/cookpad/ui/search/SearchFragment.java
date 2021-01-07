@@ -14,9 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -53,13 +55,36 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         recyclerView = view.findViewById(R.id.search_pager);
+        recyclerAdapter = new RecyclerAdapter(getContext(), recipes);
+        recyclerView.setAdapter(recyclerAdapter);
+        recyclerAdapter.setOnItemClickListener(new RecyclerAdapter.RecyclerOnItemClickListener() {
+            @Override
+            public void onItemClick(String recipeId) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id", recipeId);
+                Navigation.findNavController(view).navigate(R.id.navigation_recipe_detail, bundle);
+
+                /*FragmentManager fragmentManager = getParentFragmentManager();
+                RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
+                Bundle arguments = new Bundle();
+                arguments.putString("id", recipeId);
+                recipeDetailFragment.setArguments(arguments);
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, recipeDetailFragment).addToBackStack(null);
+                //fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.commit();*/
+            }
+        });
 
         final EditText edtSearch = view.findViewById(R.id.edtsearch);
         Button btnSearch = view.findViewById(R.id.btnSearch);
@@ -105,18 +130,10 @@ public class SearchFragment extends Fragment {
                 });
                 queue.add(jsonObjectRequest);
 
-                recyclerAdapter = new RecyclerAdapter(view.getContext(), recipes);
-                recyclerAdapter.setOnItemClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String id = "00000001";
-                        Toast.makeText(getContext(), "How to start new fragment recipe view with recipe id: 00000001", Toast.LENGTH_SHORT).show();
-                        //FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                        //fragmentTransaction.replace(R.id.fragment_container_view_tag, new RecipeDetailFragment());
-                    }
-                });
-                recyclerView.setAdapter(recyclerAdapter);
+                recyclerAdapter.notifyDataSetChanged();
             }
         });
+
     }
+
 }

@@ -9,7 +9,7 @@ public class NetWork {
     }
     public static NetWork getNetworkInfoHolder(){
         if(obj==null){
-            synchronized (AccountInfo.class){
+            synchronized (NetWork.class){
                 if(obj==null){
                     obj=new NetWork();
                 }

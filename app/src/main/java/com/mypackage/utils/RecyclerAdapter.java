@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     Context context;
     ArrayList recipes;
-    View.OnClickListener onItemClickListenerHolder;
+    RecyclerOnItemClickListener onItemClickListenerHolder;
     public RecyclerAdapter(Context context, ArrayList recipes) {
         this.context = context;
         this.recipes = recipes;
@@ -45,6 +45,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.username.setText(card.getUsername());
         holder.recipeName.setText(card.getRecipe_name());
         holder.like.setText(String.valueOf(card.getLike_counter()));
+        holder.recipeId = card.getIdRecipe();
         holder.overflowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         ImageView avatar;
         ImageButton overflowButton;
         TextView like;
+        String recipeId=null;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,15 +88,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             avatar = itemView.findViewById((R.id.avatar));
             overflowButton = itemView.findViewById((R.id.overflow_button));
             like = itemView.findViewById(R.id.likeCounter);
+            itemView.setOnClickListener(this);
         }
+
         @Override
         public void onClick(View view) {
             if(onItemClickListenerHolder != null){
-                onItemClickListenerHolder.onClick(view);
+                onItemClickListenerHolder.onItemClick(recipeId);
             }
         }
     }
-    public void setOnItemClickListener(View.OnClickListener onClickListener){
+    public void setOnItemClickListener(RecyclerOnItemClickListener onClickListener){
         this.onItemClickListenerHolder = onClickListener;
+    }
+    public interface RecyclerOnItemClickListener{
+        public void onItemClick(String recipeId);
     }
 }

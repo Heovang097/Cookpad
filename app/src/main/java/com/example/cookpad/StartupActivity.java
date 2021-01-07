@@ -3,6 +3,7 @@ package com.example.cookpad;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import com.example.cookpad.ui.activity.MainPageActivity;
 public class StartupActivity extends AppCompatActivity {
     private static final String SHARED_PREFS = "SHARED_PREFS";
     private static final String USER_ID = "user_ID";
-
+    private static final int REQUEST_CODE = 1001;
     @Override
     protected void onCreate(Bundle onSavedInstanceState) {
         super.onCreate(onSavedInstanceState);
@@ -26,6 +27,9 @@ public class StartupActivity extends AppCompatActivity {
         getPref();
         if(!AccountInfo.getAccountInfoHolder().getUserID().equals("")){
             checkStillLogin(AccountInfo.getAccountInfoHolder().getUserID());
+        }else{
+            Intent intent = new Intent(StartupActivity.this, MainActivity.class);
+            startActivityForResult(intent, REQUEST_CODE);
         }
     }
 
@@ -50,16 +54,24 @@ public class StartupActivity extends AppCompatActivity {
                 }else{
                     intent = new Intent(StartupActivity.this, MainActivity.class);
                 }
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(StartupActivity.this, "Error", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(StartupActivity.this, MainPageActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
         queue.add(stringRequest);
 
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode, resultCode, intent);
+        if(requestCode==REQUEST_CODE){
+            finish();
+        }
     }
 
 }

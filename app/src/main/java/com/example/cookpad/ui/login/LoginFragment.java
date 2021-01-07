@@ -73,7 +73,7 @@ public class LoginFragment extends Fragment {
         String password = ((EditText)getActivity().findViewById(R.id.loginPassword)).getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="http://"+ getResources().getString(R.string.serverSocket) +"/44325?n="+ username +"&p="+password + "&c=9";
+        String url ="http://"+ NetWork.getNetworkInfoHolder().getSERVER() +"/44325?n="+ username +"&p="+password + "&c=9";
 
         Log.d("@@@", url);
 
@@ -110,7 +110,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void getUserIDtoAccountInfo(String username){
-        String url = "http://"+ getResources().getString(R.string.serverSocket) +"/41111?n="+username;
+        String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER() +"/41111?n="+username;
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {

@@ -51,7 +51,7 @@ public class InspirationFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44335";
+        String url = "http://" + getResources().getString(R.string.serverSocket) + "/44335";
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
