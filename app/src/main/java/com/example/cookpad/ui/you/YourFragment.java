@@ -51,7 +51,6 @@ public class YourFragment extends Fragment {
         TextView tvNumberFollow = view.findViewById(R.id.YourNumberFollow);
         TextView tvNumberFriend = view.findViewById(R.id.YourNumberFriend);
         url = getResources().getString(R.string.Url) + "fnum?id=" + AccountInfo.getAccountInfoHolder().getUserID();
-        Log.d("@@@", url);
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

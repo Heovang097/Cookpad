@@ -42,6 +42,7 @@ public class FActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarF);
         listPeople = new ArrayList<>();
+        listViewPeople = findViewById(R.id.Flist);
         String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + getIntent().getExtras().getString("name") + "?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -57,19 +58,9 @@ public class FActivity extends AppCompatActivity {
                                 people.getInt("nRecipe"),
                                 people.getString("isFriend")));
                     }
-                    Log.d("@@@", listPeople.toString());
                     peopleListViewAdapter = new PeopleListViewAdapter(listPeople);
-                    listViewPeople = findViewById(R.id.Flist);
                     listViewPeople.setAdapter(peopleListViewAdapter);
-                    listViewPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            People people = (People) peopleListViewAdapter.getItem(position);
-                            Intent intent = new Intent(FActivity.this, PeopleActivity.class);
-                            intent.putExtra("id", people.sId);
-                            startActivity(intent);
-                        }
-                    });
+                    peopleListViewAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -137,9 +128,32 @@ public class FActivity extends AppCompatActivity {
                 friend.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                 friend.setText("KẾT BẠN BẾP");
             }
+            friend.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (people.isFriend.booleanValue() == true) {
+                        people.isFriend = Boolean.FALSE;
+                        friend.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                        friend.setText("KẾT BẠN BẾP");
+                    }
+                    else {
+                        
+                    }
+                }
+            });
             CircleImageView avatar = viewPeople.findViewById(R.id.layoutPeopleAvatar);
             String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + "44341?id=" + people.sId;
             Picasso.get().load(url).into(avatar);
+            viewPeople.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    People people = (People) peopleListViewAdapter.getItem(position);
+                    Intent intent = new Intent(FActivity.this, PeopleActivity.class);
+                    intent.putExtra("id", people.sId);
+                    Log.d("@@@", people.toString());
+                    startActivity(intent);
+                }
+            });
             return viewPeople;
         }
     }
