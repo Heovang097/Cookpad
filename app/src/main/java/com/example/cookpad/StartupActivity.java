@@ -42,7 +42,7 @@ public class StartupActivity extends AppCompatActivity {
 
     private void checkStillLogin(String userID){
 
-        String url = "http://"+ getResources().getString(R.string.serverSocket) +"/42519?id="+userID;
+        String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER() +"/42519?id="+userID;
 
         RequestQueue queue = Volley.newRequestQueue(StartupActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {

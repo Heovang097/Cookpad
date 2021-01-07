@@ -74,7 +74,7 @@ public class YouFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_you, container, false);
         Toolbar toolbar = (Toolbar) (Toolbar) view.findViewById(R.id.toolbarYou);
-        String url = "http://"+ getResources().getString(R.string.serverSocket) + "/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER() + "/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         TextView tv = (TextView) view.findViewById(R.id.YouName);
         SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -103,7 +103,7 @@ public class YouFragment extends Fragment {
             }
         });
         queue.add(jsonObjectRequest);
-        url = getResources().getString(R.string.Url) + "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        url = NetWork.getNetworkInfoHolder().getSERVER() + "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         CircleImageView avatar = (CircleImageView) view.findViewById(R.id.YouAvater);
         new YouFragment.DownloadImageTask(avatar).execute(url);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -123,7 +123,7 @@ public class YouFragment extends Fragment {
                     case R.id.Logout:
                         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
                         sharedPreferences.edit().remove("user_ID").commit();
-                        String url = "http://"+ getResources().getString(R.string.serverSocket)+"/42532?id="+ AccountInfo.getAccountInfoHolder().getUserID();
+                        String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER()+"/42532?id="+ AccountInfo.getAccountInfoHolder().getUserID();
                         RequestQueue queue = Volley.newRequestQueue(getContext());
                         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                             @Override

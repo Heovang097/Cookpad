@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -72,19 +71,6 @@ public class LoginFragment extends Fragment {
     {
         String username = ((EditText)getActivity().findViewById(R.id.loginUsername)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.loginPassword)).getText().toString();
-        CheckBox checkRemember = (CheckBox)getActivity().findViewById(R.id.checkRemember);
-        if(username.equals(""))
-        {
-            Toast toast = Toast.makeText(getActivity(), "Bạn chưa nhập username!!!", Toast.LENGTH_LONG);
-            toast.show();
-            return;
-        }
-        if(password.equals(""))
-        {
-            Toast toast = Toast.makeText(getActivity(), "Bạn chưa nhập password!!!", Toast.LENGTH_LONG);
-            toast.show();
-            return;
-        }
 
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         String url ="http://"+ NetWork.getNetworkInfoHolder().getSERVER() +"/44325?n="+ username +"&p="+password + "&c=9";
@@ -97,12 +83,8 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         Log.d("@@@", response);
-
                         if (response.equals( "Login success") || response.equals("Already login")) {
-                            if(checkRemember.isChecked()) {
-                                getUserIDtoAccountInfo(username);
-                            }
-
+                            getUserIDtoAccountInfo(username);
 
                             Toast toast = Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_LONG);
                             toast.show();
