@@ -59,6 +59,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -75,8 +76,8 @@ public class YouFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_you, container, false);
         Toolbar toolbar = (Toolbar) (Toolbar) view.findViewById(R.id.toolbarYou);
         String url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER() + "/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
-        TextView tv = (TextView) view.findViewById(R.id.YouName);
-        SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
+        final TextView tv = (TextView) view.findViewById(R.id.YouName);
+        final SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
