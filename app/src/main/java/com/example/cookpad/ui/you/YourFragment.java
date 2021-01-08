@@ -36,6 +36,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.content.Context.MODE_PRIVATE;
 
 public class YourFragment extends Fragment {
+    TextView tvNumberFollow;
+    TextView tvNumberFriend;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,8 +51,8 @@ public class YourFragment extends Fragment {
         SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
         tv.setText(sh.getString("name", ""));
         //Follow and Friend
-        TextView tvNumberFollow = view.findViewById(R.id.YourNumberFollow);
-        TextView tvNumberFriend = view.findViewById(R.id.YourNumberFriend);
+        tvNumberFollow = view.findViewById(R.id.YourNumberFollow);
+        tvNumberFriend = view.findViewById(R.id.YourNumberFriend);
         url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/fnum?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -119,7 +121,7 @@ public class YourFragment extends Fragment {
     private void startFollow(){
         Intent intent = new Intent(getActivity(), FActivity.class);
         intent.putExtra("name", "follow");
-        intent.putExtra("tittle", " Người quan tâm");
+        intent.putExtra("tittle", " Followers");
         intent.putExtra("id", AccountInfo.getAccountInfoHolder().getUserID());
         startActivity(intent);
     }
@@ -127,7 +129,7 @@ public class YourFragment extends Fragment {
     private void startFriend(){
         Intent intent = new Intent(getActivity(), FActivity.class);
         intent.putExtra("name", "friend");
-        intent.putExtra("tittle", " Bạn bếp");
+        intent.putExtra("tittle", " Following");
         intent.putExtra("id", AccountInfo.getAccountInfoHolder().getUserID());
         startActivity(intent);
     }
@@ -150,5 +152,26 @@ public class YourFragment extends Fragment {
         sh.registerOnSharedPreferenceChangeListener(prefListener);
         //tv.setText(sh.getString("name", ""));
         tv.setText("  " + sh.getString("name", ""));
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/fnum?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Integer num = response.getInt("follow");
+                    tvNumberFollow.setText(num.toString());
+                    num = (Integer) response.getInt("friend");
+                    tvNumberFriend.setText(num.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(jsonObjectRequest);
     }
 }
