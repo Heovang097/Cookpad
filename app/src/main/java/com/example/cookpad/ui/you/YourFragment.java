@@ -38,14 +38,14 @@ import static android.content.Context.MODE_PRIVATE;
 public class YourFragment extends Fragment {
     TextView tvNumberFollow;
     TextView tvNumberFriend;
+    CircleImageView avatar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_your, container, false);
         //Circle View
-        CircleImageView avatar = (CircleImageView) view.findViewById(R.id.YourAvatar);
+        avatar = (CircleImageView) view.findViewById(R.id.YourAvatar);
         String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
-        Picasso.get().load(url).into(avatar);
         //Name
         TextView tv = view.findViewById(R.id.YourName);
         SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
@@ -173,5 +173,7 @@ public class YourFragment extends Fragment {
             }
         });
         queue.add(jsonObjectRequest);
+        url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        Picasso.get().load(url).into(avatar);
     }
 }

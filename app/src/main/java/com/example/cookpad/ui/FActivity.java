@@ -132,25 +132,41 @@ public class FActivity extends AppCompatActivity {
             ((TextView) viewPeople.findViewById(R.id.layoutPeopleName)).setText(people.name);
             ((TextView) viewPeople.findViewById(R.id.layoutPeopleNum)).setText(" " + people.amountRecipe.toString());
             Button follow = viewPeople.findViewById(R.id.layoutPeopleFriend);
-            if (people.isFriend.booleanValue() == true) {
-                follow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_confirm,0,0,0);
-                follow.setText("FOLLOWING");
+            if (people.sId.equals(AccountInfo.getAccountInfoHolder().getUserID())) {
+                follow.setText("YOU");
+                follow.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        People people = (People) peopleListViewAdapter.getItem(position);
+                        Intent intent = new Intent(FActivity.this, PeopleActivity.class);
+                        intent.putExtra("id", people.sId);
+                        intent.putExtra("name", people.name);
+                        Log.d("@@@", people.toString());
+                        startActivity(intent);
+                    }
+                });
             }
             else {
-                follow.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                follow.setText("FOLLOW");
-            }
-            follow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (people.isFriend.booleanValue() == true) {
-                        uF(follow, people.sId, people);
-                    }
-                    else {
-                        mF(follow, people.sId, people);
-                    }
+                if (people.isFriend.booleanValue() == true) {
+                    follow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_confirm,0,0,0);
+                    follow.setText("FOLLOWING");
                 }
-            });
+                else {
+                    follow.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                    follow.setText("FOLLOW");
+                }
+                follow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (people.isFriend.booleanValue() == true) {
+                            uF(follow, people.sId, people);
+                        }
+                        else {
+                            mF(follow, people.sId, people);
+                        }
+                    }
+                });
+            }
             CircleImageView avatar = viewPeople.findViewById(R.id.layoutPeopleAvatar);
             String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + "44341?id=" + people.sId;
             Picasso.get().load(url).into(avatar);

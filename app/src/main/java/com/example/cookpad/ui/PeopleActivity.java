@@ -52,6 +52,9 @@ public class PeopleActivity extends AppCompatActivity {
         Picasso.get().load(url).into(avatar);
         ((TextView) findViewById(R.id.peopleName)).setText(getIntent().getExtras().getString("name"));
         Button follow = findViewById(R.id.peopleIsFriend);
+        if (id.equals(AccountInfo.getAccountInfoHolder().getUserID())){
+            follow.setVisibility(View.INVISIBLE);
+        }
         RequestQueue queue = Volley.newRequestQueue(this);
         url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + "isFriend?you=" +
                 AccountInfo.getAccountInfoHolder().getUserID()  + "&people=" + id;
