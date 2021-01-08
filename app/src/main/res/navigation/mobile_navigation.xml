@@ -5,12 +5,10 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
-
     <action android:id="@+id/actionGlobal_toRecipeDetail"
         app:destination="@+id/navigation_recipe_detail"
         app:enterAnim="@anim/fragment_fade_enter"
         app:exitAnim="@anim/fragment_fade_exit"/>
-
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.cookpad.ui.home.HomeFragment"
@@ -22,6 +20,7 @@
         android:name="com.example.cookpad.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
+
     <fragment
         android:id="@+id/navigation_create"
         android:name="com.example.cookpad.ui.create.CreateFragment"
@@ -36,19 +35,14 @@
         android:id="@+id/navigation_you"
         android:name="com.example.cookpad.ui.you.YouFragment"
         android:label="@string/title_you"
+        tools:layout="@layout/fragment_you" />
 
-        tools:layout="@layout/fragment_you" >
-        <action
-            android:id="@+id/action_navigation_you_to_navigation_your2"
-            app:destination="@id/navigation_your" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_your"
-        android:name="com.example.cookpad.ui.you.YourFragment"
-        tools:layout="@layout/fragment_your"/>
     <fragment
         android:id="@+id/navigation_recipe_detail"
         android:name="com.example.cookpad.ui.create.RecipeDetail.RecipeDetailFragment"
         android:label="@string/title_recipe_detail"
-        tools:layout="@layout/fragment_recipe_detail"/>
+        tools:layout="@layout/fragment_recipe_detail"
+
+        />
+
 </navigation>
