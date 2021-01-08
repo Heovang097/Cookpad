@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id = "@+id/YourPage"
+        android:title="@string/YourPage"/>
+    <item
+        android:id = "@+id/UpdateInfo"
+        android:title = "@string/UpdateInfo"/>
+    <item
+        android:id = "@+id/Logout"
+        android:title = "Đăng xuất"/>
+    <item
+        android:id = "@+id/Statics"
+        android:title="Static"
+        app:showAsAction="always"
+        android:icon = "@drawable/ic_static"/>
+    <item android:id = "@+id/Setting"
+        android:title="Setting"
+        app:showAsAction = "always"
+        android:icon="@drawable/ic_setting"/>
+</menu>
