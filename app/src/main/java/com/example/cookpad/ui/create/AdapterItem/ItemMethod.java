@@ -10,8 +10,12 @@ public class ItemMethod {
     public List<String> imagePaths;
     public List<Bitmap> bitmaps;
 
-    public ItemMethod(String step, String number, int i) {
+    public List<Bitmap> getBitmaps() {
+        return bitmaps;
+    }
 
+    public void setBitmaps(List<Bitmap> bitmaps) {
+        this.bitmaps = bitmaps;
     }
 
     public List<String> getImagePaths() {
@@ -27,6 +31,13 @@ public class ItemMethod {
         this.number = number;
         this.imagePaths = imagePaths;
     }
+
+    public ItemMethod(String step, String number)
+    {
+        this.step = step;
+        this.number = number;
+    }
+
 
 
     public void setStep(String step) {

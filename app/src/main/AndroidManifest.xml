@@ -17,8 +17,6 @@
         >
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".ui.you.UpdateActivity"></activity>
-        <activity android:name=".ui.FActivity"></activity>
-        <activity android:name=".ui.PeopleActivity"></activity>
         <activity android:name=".ViewImageActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
