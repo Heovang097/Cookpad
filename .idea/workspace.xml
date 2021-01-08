@@ -11,15 +11,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebdfb72b-4424-45bc-9c1c-aea4ab4612ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cookpad/NetWork.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cookpad/NetWork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cookpad/ui/search/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cookpad/ui/search/SearchFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cookpad/ui/you/YouFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cookpad/ui/you/YouFragment.java" afterDir="false" />
-    </list>
+    <list default="true" id="ecc6a1ae-c972-4f5d-b14c-35d79288608e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,13 +38,7 @@
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
   <component name="ProjectId" id="1mPHDJcXSz1rfLBmRp9LWLWLJY9" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -64,14 +50,13 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="JUC4C18709004938" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-01-02T12:58:06.286Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android-custom-viewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/androidx.core/core/1.3.1/d70edd6d800903a31efea1a28ae531bd91e1a926/core-1.3.1-sources.jar!/androidx/core/widget/NestedScrollView.java_SELECTED" value="NestedScrollView" />
     <property name="android-custom-viewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-viewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/bottomnavigation/BottomNavigationView.java_SELECTED" value="BottomNavigationView" />
     <property name="android-custom-viewC:/Users/Heova/AndroidStudioProjects/Cookpad2/app/src/main/java/com/example/cookpad/utils/SquareImageView.java_SELECTED" value="SquareImageView" />
     <property name="android-custom-viewC:/Users/Heova/AppData/Local/Android/Sdk/sources/android-28/android/widget/ImageView.java_SELECTED" value="ImageView" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VolleyDemo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="multi-representation-previewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/androidx.core/core/1.3.1/d70edd6d800903a31efea1a28ae531bd91e1a926/core-1.3.1-sources.jar!/androidx/core/widget/NestedScrollView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/Heova/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/bottomnavigation/BottomNavigationView.java_selected" value="Custom views" />
@@ -80,25 +65,28 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.71486231">
-      <recent name="com.example.cookpad.fragments.create.RecipeDetail" />
-    </key>
     <key name="android.template.-802728585">
       <recent name="com.example.cookpad.utils" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\drawable" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\layout" />
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\java\com\example\cookpad\utils\Volley" />
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\drawable" />
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\java\com\example\cookpad\fragments" />
+      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\drawable-v24" />
+    </key>
+    <key name="android.template.71486231">
       <recent name="com.example.cookpad.fragments.create.RecipeDetail" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.cookpad.utils" />
       <recent name="com.example.cookpad" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\java\com\example\cookpad\utils\Volley" />
-      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\drawable" />
-      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\layout" />
-      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\java\com\example\cookpad\fragments" />
-      <recent name="C:\Users\Heova\AndroidStudioProjects\Cookpad2\app\src\main\res\drawable-v24" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.cookpad.fragments.create.RecipeDetail" />
     </key>
   </component>
   <component name="RunManager">
@@ -110,7 +98,7 @@
       </method>
     </configuration>
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="Cookpad.app" />
+      <module name="Cookpad2.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -172,16 +160,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ebdfb72b-4424-45bc-9c1c-aea4ab4612ce" name="Default Changelist" comment="" />
+      <changelist id="ecc6a1ae-c972-4f5d-b14c-35d79288608e" name="Default Changelist" comment="" />
       <created>1609388184350</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1609388184350</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609391419235">
@@ -228,50 +213,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1015" y="294" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609390195257" />
-    <state x="758" y="266" key="AndroidProcessChooserDialog" timestamp="1610023350699">
+    <state x="758" y="266" key="AndroidProcessChooserDialog" timestamp="1610092651583">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="758" y="266" key="AndroidProcessChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610023350699" />
+    <state x="758" y="266" key="AndroidProcessChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610092651583" />
     <state width="397" height="466" key="DebuggerActiveHint" timestamp="1609626866940">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="397" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1609626866940" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1610005359437">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1610095517097">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1610005359437" />
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom" timestamp="1610023870193">
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1610095517097" />
+    <state width="1877" height="2" key="GridCell.Tab.0.bottom" timestamp="1610094708741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610023870193" />
-    <state width="1877" height="392" key="GridCell.Tab.0.center" timestamp="1610023870192">
+    <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610094708741" />
+    <state width="1877" height="2" key="GridCell.Tab.0.center" timestamp="1610094708741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610023870192" />
-    <state width="1877" height="392" key="GridCell.Tab.0.left" timestamp="1610023870192">
+    <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610094708741" />
+    <state width="1877" height="2" key="GridCell.Tab.0.left" timestamp="1610094708741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610023870192" />
-    <state width="1877" height="392" key="GridCell.Tab.0.right" timestamp="1610023870193">
+    <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610094708741" />
+    <state width="1877" height="2" key="GridCell.Tab.0.right" timestamp="1610094708741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610023870193" />
-    <state width="1877" height="392" key="GridCell.Tab.1.bottom" timestamp="1610023870193">
+    <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610094708741" />
+    <state width="1877" height="2" key="GridCell.Tab.1.bottom" timestamp="1610094708742">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610023870193" />
-    <state width="1877" height="392" key="GridCell.Tab.1.center" timestamp="1610023870193">
+    <state width="1877" height="2" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610094708742" />
+    <state width="1877" height="2" key="GridCell.Tab.1.center" timestamp="1610094708741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610023870193" />
-    <state width="1877" height="392" key="GridCell.Tab.1.left" timestamp="1610023870193">
+    <state width="1877" height="2" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610094708741" />
+    <state width="1877" height="2" key="GridCell.Tab.1.left" timestamp="1610094708741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610023870193" />
-    <state width="1877" height="392" key="GridCell.Tab.1.right" timestamp="1610023870193">
+    <state width="1877" height="2" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610094708741" />
+    <state width="1877" height="2" key="GridCell.Tab.1.right" timestamp="1610094708742">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610023870193" />
+    <state width="1877" height="2" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610094708742" />
     <state x="657" y="297" key="Performance.Activity.Monitor" timestamp="1609560340125">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

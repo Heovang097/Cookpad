@@ -1,8 +1,10 @@
 package com.example.cookpad.ui.create;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -41,6 +43,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.nio.InvalidMarkException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -62,6 +66,7 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
     private Button addIngredientButton;
     private Button addMethodButton;
     private Button publishButton;
+    private Button deleteIngredientButton;
 
     Context mContext = this;
     @Override
@@ -71,15 +76,17 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //        CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
 //        toolBarLayout.setTitle("Phở bò");
-
 
         editTextTitle = findViewById(R.id.et_title);
         editTextDesc = findViewById(R.id.et_desc);
         editTextNump = findViewById(R.id.et_nump);
         editTextTime = findViewById(R.id.et_time);
         imageViewThumbnail = findViewById(R.id.image);
+        imageViewThumbnail.setOnClickListener(this);
+
         recyclerIngredient = (RecyclerView) findViewById(R.id.recyclerIngredients);
 
         mIngredientAdapter = new IngredientsAdapter(generateIngredientsDummies(),this);
@@ -91,7 +98,7 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
 
         recyclerViewMethod = (RecyclerView) findViewById(R.id.recyclerMethod);
 
-        mMethodAdapter = new MethodAdapter(generateMethodDummies(),this);
+        mMethodAdapter = new MethodAdapter(generateMethodDummies(),this,this);
         LinearLayoutManager mLayoutManagerPreparation = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerViewMethod.setLayoutManager(mLayoutManagerPreparation);
         recyclerViewMethod.setItemAnimator(new DefaultItemAnimator());
@@ -108,9 +115,10 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
     List<Bitmap> bitmaps = new ArrayList();
     private List<ItemMethod> generateMethodDummies() {
         List<ItemMethod> itemList = new ArrayList<>();
-        String name[] = {"Đập trứng", "Nấu cơm"};
-        bitmaps.add(BitmapFactory.decodeResource(getResources(),R.drawable.nau_pho_0));
-        bitmaps.add(BitmapFactory.decodeResource(getResources(),R.drawable.nau_pho_1));
+        String name[] = {"", ""};
+
+        for(int i =0;i<3;i++)
+            bitmaps.add(BitmapFactory.decodeResource(getResources(),R.drawable.ic_step_image));
         for (int i = 0; i<name.length; i++){
             ItemMethod itemMethod =new ItemMethod(name[i],String.valueOf(i));
             itemMethod.setBitmaps(bitmaps);
@@ -121,7 +129,7 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
 
     public List<ItemIngredients> generateIngredientsDummies(){
         List<ItemIngredients> itemList = new ArrayList<>();
-        String name[] = {"200g bơ", "100g thịt ba rọi"};
+        String name[] = {"", ""};
         for (int i = 0; i<name.length; i++){
             ItemIngredients itemIngredients = new ItemIngredients(name[i]);
             itemList.add(itemIngredients);
@@ -220,7 +228,8 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
                 }
                 params.put("json",new DataPart("metadata.json",jsonObject.toString().getBytes()));
                 params.put("thumbnail", new DataPart("thumbnail.jpg", AppHelper.getFileDataFromDrawable(getBaseContext(), getDrawable(R.drawable.pho_bo)), "image/jpeg"));
-
+                for(Map.Entry<String,Bitmap> entry:mMethodAdapter.images.entrySet())
+                    params.put(entry.getKey(),new DataPart(entry.getKey()+".jpg",AppHelper.getFileDataFromBitmap(getBaseContext(),entry.getValue())));
                 //params.put("cover", new DataPart("file_cover.jpg", AppHelper.getFileDataFromDrawable(getBaseContext(), mCoverImage.getDrawable()), "image/jpeg"));
                 return params;
             }
@@ -231,6 +240,7 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch(v.getId())
         {
             case R.id.publishRecipeButton:
@@ -243,8 +253,36 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
                 ItemMethod itemMethod = new ItemMethod("",String.valueOf(mMethodAdapter.getItemCount()));
                 itemMethod.setBitmaps(bitmaps);
                 mMethodAdapter.add(itemMethod);
-
                 break;
+            case R.id.image:
+                mImageViewWhichRecieveTheBitmapFromPickImageActivity = (ImageView)v;
+                intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, PICK_IMAGE);
+                break;
+            case R.id.siv_step:
+                mImageViewWhichRecieveTheBitmapFromPickImageActivity = (ImageView)v;
+                intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, PICK_IMAGE);
+                break;
+        }
+    }
+    public static final int PICK_IMAGE = 1;
+    private ImageView mImageViewWhichRecieveTheBitmapFromPickImageActivity;
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
+            Uri targetUri = data.getData();
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+                mImageViewWhichRecieveTheBitmapFromPickImageActivity.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                //TODO: action
+            }
         }
     }
 }

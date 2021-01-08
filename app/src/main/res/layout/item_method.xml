@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tv_number"
             android:layout_marginLeft="@dimen/space16"
+            android:hint="Describe this step? Example Twist Lemon In "
             style="@style/Text14Reg"/>
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView

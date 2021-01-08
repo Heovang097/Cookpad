@@ -1,3 +1,2 @@
 include ':app'
-
-rootProject.name = "Cookpad"
+rootProject.name = "Cookpad2"
