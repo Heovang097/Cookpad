@@ -47,6 +47,18 @@
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/peopleAvatar"
                 app:layout_constraintTop_toTopOf="parent"/>
+
+            <Button
+                android:id="@+id/peopleIsFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_button_white"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@id/peopleAvatar"
+                app:layout_constraintStart_toEndOf="@id/peopleAvatar"
+                app:layout_constraintTop_toBottomOf="@id/peopleName"/>
+
             <View
                 android:id="@+id/peopleView"
                 android:layout_width="1dp"

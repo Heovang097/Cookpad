@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.AccountInfo;
 import com.example.cookpad.NetWork;
@@ -95,6 +97,10 @@ public class FActivity extends AppCompatActivity {
             else
                 this.isFriend = Boolean.TRUE;
         }
+
+        public void setFriend(Boolean friend) {
+            isFriend = friend;
+        }
     }
 
     class PeopleListViewAdapter extends BaseAdapter {
@@ -124,24 +130,23 @@ public class FActivity extends AppCompatActivity {
             People people = (People) getItem(position);
             ((TextView) viewPeople.findViewById(R.id.layoutPeopleName)).setText(people.name);
             ((TextView) viewPeople.findViewById(R.id.layoutPeopleNum)).setText(" " + people.amountRecipe.toString());
-            TextView friend = viewPeople.findViewById(R.id.layoutPeopleFriend);
+            Button follow = viewPeople.findViewById(R.id.layoutPeopleFriend);
             if (people.isFriend.booleanValue() == true) {
-                friend.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_confirm,0,0,0);
-                friend.setText("BẠN BẾP");
+                follow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_confirm,0,0,0);
+                follow.setText("FOLLOWING");
             }
             else {
-                friend.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                friend.setText("KẾT BẠN BẾP");
+                follow.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                follow.setText("FOLLOW");
             }
-            friend.setOnClickListener(new View.OnClickListener() {
+            follow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (people.isFriend.booleanValue() == true) {
-                        people.isFriend = Boolean.FALSE;
-                        friend.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                        friend.setText("KẾT BẠN BẾP");
+                        uF(follow, people.sId, people);
                     }
                     else {
+                        mF(follow, people.sId, people);
                     }
                 }
             });
@@ -161,5 +166,50 @@ public class FActivity extends AppCompatActivity {
             });
             return viewPeople;
         }
+    }
+    private void uF(TextView follow, String id, People people){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + "uF?you=" +
+                AccountInfo.getAccountInfoHolder().getUserID()  + "&people=" + id;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equals("success")) {
+                            people.setFriend(Boolean.FALSE);
+                            follow.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                            follow.setText("FOLLOW");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("@@@", error.toString());
+            }
+        });
+        queue.add(stringRequest);
+    }
+
+    private void mF(Button follow, String id, People people){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + "mF?you=" +
+                AccountInfo.getAccountInfoHolder().getUserID()  + "&people=" + id;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equals("success")) {
+                            people.setFriend(Boolean.TRUE);
+                            follow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_confirm,0,0,0);
+                            follow.setText("FOLLOWING");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("@@@", error.toString());
+            }
+        });
+        queue.add(stringRequest);
     }
 }
