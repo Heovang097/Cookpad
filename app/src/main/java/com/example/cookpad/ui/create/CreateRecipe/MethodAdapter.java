@@ -1,7 +1,6 @@
 package com.example.cookpad.ui.create.CreateRecipe;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -21,21 +20,17 @@ import com.example.cookpad.ui.create.AdapterItem.ItemMethod;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MethodAdapter extends RecyclerView.Adapter<MethodAdapter.MyViewHolder> {
 
     public List<ItemMethod> items;
-    public Map<String,Bitmap> images = new HashMap<>();
     public Context context;
     View itemView;
 
-    public MethodAdapter(List<ItemMethod> items,Context context,View.OnClickListener onClickListener) {
+    public MethodAdapter(List<ItemMethod> items,Context context) {
         this.items = items;
         this.context = context;
-        this.mOnClickListener = onClickListener;
     }
 
     public void add(ItemMethod itemMethod)
@@ -46,7 +41,7 @@ public class MethodAdapter extends RecyclerView.Adapter<MethodAdapter.MyViewHold
 
     public JSONArray getStepList()
     {
-        String path = "files/recipes/";
+        String path = "files\\recipes\\";
         JSONArray step = new JSONArray();
         for(int i =0;i<items.size();i++)
         {
@@ -56,11 +51,7 @@ public class MethodAdapter extends RecyclerView.Adapter<MethodAdapter.MyViewHold
                 for (int j =0;j<3;j++)
                 {
                     if(items.get(i).bitmaps.size() > j)
-                    {
-                        String name = "step" + (i+1) + "img"+ (j+1);
-                        temp.put("img"+(j+1), path + name);
-                        images.put(name,items.get(i).bitmaps.get(j));
-                    }
+                        temp.put("img"+(j+1),path + "step" + (i+1) + "img"+ (j+1));
                     else
                         temp.put("img"+(j+1),"");
                 }
@@ -83,22 +74,15 @@ public class MethodAdapter extends RecyclerView.Adapter<MethodAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         holder.myCustomEditTextListener.updatePosition(holder.getAdapterPosition());
-        holder.number.setText(String.valueOf(Integer.parseInt(items.get(position).getNumber())+1));
+        holder.number.setText(items.get(position).getNumber());
         holder.step.setText(items.get(position).getStep());
         holder.recyclerImage = itemView.findViewById(R.id.rv_step_image);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         holder.recyclerImage.setLayoutManager(mLayoutManager);
         holder.recyclerImage.setItemAnimator(new DefaultItemAnimator());
-        StepImageAdapter stepImageAdapter = new StepImageAdapter(mOnClickListener);
+        StepImageAdapter stepImageAdapter = new StepImageAdapter();
         stepImageAdapter.setBitmaps(items.get(position).getBitmaps());
         holder.recyclerImage.setAdapter(stepImageAdapter);
-    }
-
-
-    protected View.OnClickListener mOnClickListener;
-    public void setOnClickListenerForStepImage(View.OnClickListener onClickListenerForStepImage)
-    {
-        mOnClickListener = onClickListenerForStepImage;
     }
 
     @Override
