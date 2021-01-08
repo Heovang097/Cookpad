@@ -1,13 +1,5 @@
 package com.example.cookpad.ui.home;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.cookpad.NetWork;
-import com.example.cookpad.R;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.cookpad.AccountInfo;
+import com.example.cookpad.NetWork;
+import com.example.cookpad.R;
 import com.mypackage.utils.RecyclerAdapter;
 
 import org.json.JSONArray;
@@ -50,7 +51,8 @@ public class NetworkFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44335";
+        String userID = AccountInfo.getAccountInfoHolder().getUserID();
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44345?id=" + userID;
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

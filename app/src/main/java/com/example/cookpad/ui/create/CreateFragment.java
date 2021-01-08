@@ -3,16 +3,14 @@ package com.example.cookpad.ui.create;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.cookpad.R;
 
@@ -30,7 +28,7 @@ public class CreateFragment extends Fragment {
     View mFragmentView = null;
     Context mContext = null;
     Button createRecipeButton = null;
-    Button viewRecipeDetailButton = null;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -78,24 +76,16 @@ public class CreateFragment extends Fragment {
         // Inflate the layout for this fragment
         mFragmentView =  inflater.inflate(R.layout.fragment_create, container, false);
         createRecipeButton = mFragmentView.findViewById(R.id.createRecipeButton);
-        viewRecipeDetailButton = mFragmentView.findViewById(R.id.btn_recipe_detail);
         SetOnClickListnerForCreateRecipeButton();
         return mFragmentView;
     }
 
     private void SetOnClickListnerForCreateRecipeButton() {
-
         createRecipeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CreateRecipeActivity.class);
                 startActivity(intent);
-            }
-        });
-        viewRecipeDetailButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.actionGlobal_toRecipeDetail);
             }
         });
     }

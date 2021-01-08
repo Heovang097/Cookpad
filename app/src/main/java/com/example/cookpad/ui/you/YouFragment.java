@@ -58,13 +58,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
 import static android.content.Context.MODE_PRIVATE;
-
-public class YouFragment extends Fragment {
-
+public class YouFragment extends Fragment   {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,6 +102,7 @@ public class YouFragment extends Fragment {
         });
         queue.add(jsonObjectRequest);
         url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+
         CircleImageView avatar = (CircleImageView) view.findViewById(R.id.YouAvater);
         new YouFragment.DownloadImageTask(avatar).execute(url);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -113,9 +110,11 @@ public class YouFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.YourPage:
+
                         Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_navigation_you_to_navigation_your2);
                         return true;
                     case R.id.UpdateInfo:
+
                         Intent intent = new Intent(getActivity(), UpdateActivity.class);
                         getActivity().startActivityForResult(intent, 10001);
                         //startActivity(intent);

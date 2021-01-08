@@ -1,5 +1,6 @@
 package com.example.cookpad.ui.you;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -173,5 +174,6 @@ public class YourFragment extends Fragment {
             }
         });
         queue.add(jsonObjectRequest);
+
     }
 }

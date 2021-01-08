@@ -5,13 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,17 +20,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.cookpad.AccountInfo;
-import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
-import com.example.cookpad.ViewImageActivity;
 import com.example.cookpad.ui.create.AdapterItem.ItemIngredients;
 import com.example.cookpad.ui.create.AdapterItem.ItemMethod;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,19 +36,9 @@ public class RecipeDetailFragment extends Fragment {
     private IngredientsDetailAdapter mIngredientAdapter;
     private RecyclerView recyclerViewMethod;
     private MethodDetailAdapter mMethodAdapter;
-    private DecimalFormat decimalFormat;
-    private ImageView thumbnail;
     TextView tv_recipe_name,tv_mo_ta,tv_khau_phan,tv_thoi_gian;
-    String recipeId;
-    public RecipeDetailFragment(){
-    }
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        recipeId = getArguments() != null ? getArguments().getString("id") : "";
-    }
 
+    private String UserID = "00000001";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -67,7 +51,6 @@ public class RecipeDetailFragment extends Fragment {
         tv_mo_ta = v.findViewById(R.id.tv_mo_ta);
         tv_thoi_gian = v.findViewById(R.id.tv_thoi_gian);
         tv_recipe_name = v.findViewById(R.id.tv_recipe_name);
-        thumbnail = v.findViewById(R.id.imageThumbnailRecipeDetail);
 
         recyclerIngredient = (RecyclerView) v.findViewById(R.id.recyclerIngredients);
         recyclerViewMethod = (RecyclerView)v.findViewById(R.id.recyclerMethod);
@@ -79,8 +62,6 @@ public class RecipeDetailFragment extends Fragment {
         LinearLayoutManager mLayoutManagerPreparation = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewMethod.setLayoutManager(mLayoutManagerPreparation);
         recyclerViewMethod.setItemAnimator(new DefaultItemAnimator());
-
-        decimalFormat=new DecimalFormat("#.0");
         return v;
     }
 
@@ -91,10 +72,7 @@ public class RecipeDetailFragment extends Fragment {
     }
 
     private void fetchData() {
-        String url = "files/recipes/" + recipeId+"/thumbnail.jpg";
-        ViewImageActivity.getImageFromServer(url, thumbnail, getContext());
-
-        url = "http://"+ NetWork.getNetworkInfoHolder().getSERVER() +"/44439?id="+recipeId;
+        String url = "http://192.168.1.85:8999/44439?id=" + UserID;
         final ArrayList<ItemIngredients> ingList = new ArrayList<>();
         final ArrayList<ItemMethod> mtdList = new ArrayList<>();
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -108,8 +86,7 @@ public class RecipeDetailFragment extends Fragment {
                             tv_recipe_name.setText(response.getString("name"));
                             tv_khau_phan.setText(response.getString("nump"));
                             tv_mo_ta.setText(response.getString("desc"));
-                            String tg = decimalFormat.format((float)Integer.valueOf(response.getString("time"))/3600) + "h";
-                            tv_thoi_gian.setText(tg);
+                            tv_thoi_gian.setText(response.getString("time"));
                             JSONArray ings = response.getJSONArray("ings");
                             JSONArray steps = response.getJSONArray("step");
                             for (int i =0;i<ings.length();i++)
@@ -123,7 +100,7 @@ public class RecipeDetailFragment extends Fragment {
                             for (int i =0;i<steps.length();i++)
                             {
                                 //String number = String.valueOf(mMethodAdapter.getItemCount());
-                                String number = String.valueOf(i + 1);
+                                String number = String.valueOf(i);
                                 String desc = steps.getJSONObject(i).getString("desc");
                                 ArrayList<String> imagePaths = new ArrayList<>();
                                 for (int j =0 ;j<3;j++)
@@ -131,9 +108,9 @@ public class RecipeDetailFragment extends Fragment {
                                     String path = steps.getJSONObject(i).getString("img" + String.valueOf(j+1));
                                     if(path != null)
                                     {
-                                        path =  "http://"+ NetWork.getNetworkInfoHolder().getSERVER() +"/44429?path=" + path.replace("/","%2F");
-                                        imagePaths.add(path);
-                                    }
+                                    path =  "http://192.168.1.85:8999/44429?path=" + path.replace("/","%2F");
+                                    imagePaths.add(path);
+                                }
                                     else
                                     {
                                         break;
@@ -172,7 +149,7 @@ public class RecipeDetailFragment extends Fragment {
 //        return itemList;
 //    }
 
-    /*public List<ItemIngredients> generateIngredientsDummies(){
+    public List<ItemIngredients> generateIngredientsDummies(){
         List<ItemIngredients> itemList = new ArrayList<>();
         String name[] = {"200g bơ", "100g thịt ba rọi"};
         for (int i = 0; i<name.length; i++){
@@ -180,6 +157,6 @@ public class RecipeDetailFragment extends Fragment {
             itemList.add(itemIngredients);
         }
         return itemList;
-    }*/
+    }
 
 }

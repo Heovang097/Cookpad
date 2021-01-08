@@ -30,6 +30,7 @@ public class AppHelper {
         return byteArrayOutputStream.toByteArray();
     }
 
+
     public static byte[] getFileDataFromBitmap(Context context, Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
