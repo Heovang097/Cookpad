@@ -60,7 +60,7 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         recyclerView = view.findViewById(R.id.search_pager);
