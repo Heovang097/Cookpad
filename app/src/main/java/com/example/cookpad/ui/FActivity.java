@@ -50,7 +50,8 @@ public class FActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarF);
         listPeople = new ArrayList<>();
         listViewPeople = findViewById(R.id.Flist);
-        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + getIntent().getExtras().getString("name") + "?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + getIntent().getExtras().getString("name")
+                + "?people=" + getIntent().getExtras().getString("id") + "&you=" + AccountInfo.getAccountInfoHolder().getUserID();
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

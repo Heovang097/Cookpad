@@ -88,6 +88,32 @@ public class PeopleActivity extends AppCompatActivity {
                 }
             }
         });
+        TextView follower = findViewById(R.id.peopleFollow);
+        TextView friend = findViewById(R.id.peopleFriend);
+        follower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startFollow(id);
+            }
+        });
+        tvNumberFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startFollow(id);
+            }
+        });
+        friend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startFriend(id);
+            }
+        });
+        tvNumberFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startFriend(id);
+            }
+        });
     }
     private void uF(Button follow, String id){
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -170,5 +196,20 @@ public class PeopleActivity extends AppCompatActivity {
             }
         });
         queue.add(jsonObjectRequest);
+    }
+    private void startFollow(String id){
+        Intent intent = new Intent(this, FActivity.class);
+        intent.putExtra("name", "follow");
+        intent.putExtra("tittle", " Followers");
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
+
+    private void startFriend(String id){
+        Intent intent = new Intent(this, FActivity.class);
+        intent.putExtra("name", "friend");
+        intent.putExtra("tittle", " Following");
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 }
