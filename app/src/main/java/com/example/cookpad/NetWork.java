@@ -5,7 +5,7 @@ public class NetWork {
     private String SERVER ;
 
     private NetWork(){
-        SERVER="192.168.1.85:8999";
+        SERVER="192.168.1.124:8012";
     }
     public static NetWork getNetworkInfoHolder(){
         if(obj==null){
