@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cookpad.R;
-import com.example.cookpad.ui.create.CreateRecipeActivity;
 import com.example.cookpad.utils.SquareImageView;
 import com.squareup.picasso.Picasso;
 
@@ -21,9 +20,9 @@ public class StepImageAdapter extends RecyclerView.Adapter<StepImageAdapter.MyVi
     public StepImageAdapter(List<String> imagePaths) {
         this.imagePaths = imagePaths;
     }
-    public StepImageAdapter(View.OnClickListener onClickListener)
+    public StepImageAdapter()
     {
-        this.mOnClickListener = onClickListener;
+
     }
 
     public void setBitmaps(List<Bitmap> bitmaps) {
@@ -46,7 +45,6 @@ public class StepImageAdapter extends RecyclerView.Adapter<StepImageAdapter.MyVi
         if(imagePaths == null)
         {
             holder.squareImageView.setImageBitmap(bitmaps.get(position));
-            holder.squareImageView.setOnClickListener(mOnClickListener);
         }
         else
             Picasso.get().load(imagePaths.get(position)).fit().into(holder.squareImageView);
@@ -58,15 +56,9 @@ public class StepImageAdapter extends RecyclerView.Adapter<StepImageAdapter.MyVi
             return imagePaths.size();
         return bitmaps.size();
     }
-    protected  View.OnClickListener mOnClickListener;
-
-    public void setOnClickListner(View.OnClickListener mOnClickListener) {
-        this.mOnClickListener = mOnClickListener;
-    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         SquareImageView squareImageView;
-
         public MyViewHolder(@NonNull View view) {
             super(view);
             v = view;

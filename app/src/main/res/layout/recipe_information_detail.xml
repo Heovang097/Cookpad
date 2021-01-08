@@ -8,13 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_recipe_name"
-        android:layout_margin="@dimen/space16"
         style="@style/Text22Semi"
         android:text="Gà nướng muối ớt"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space16"
         style="@style/Text14Reg"
         android:id="@+id/tv_mo_ta"
         android:text="Món ăn thơm ngon, thích hợp cho bửa ăn gia đình hoặc tiệc tùng."/>
@@ -26,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="@dimen/space16"
             android:weightSum="2">
             <TextView
                 android:layout_weight="1"
@@ -44,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="@dimen/space16"
             android:weightSum="2">
             <TextView
                 android:layout_weight="1"

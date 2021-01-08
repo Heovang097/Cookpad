@@ -3,27 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cookpad.ui.you.YouFragment">
+    tools:context="com.example.cookpad.ui.you.YouFragment"
+    android:id="@+id/YouFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarYou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/menu_you"
+        app:layout_constraintBottom_toTopOf="@id/tabsYou"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tabsYou"/>
+        app:menu="@menu/menu_you">
+
+        <LinearLayout
+            android:id="@+id/linearlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/YouAvater"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:id="@+id/YouName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:ellipsize="end"
+                android:singleLine="true"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabsYou"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/toolbarYou"
-        />
+        android:id="@+id/tabsYou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbarYou" />
 
     <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pagerYou"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintBottom_toTopOf="@id/tabsYou"
-            app:layout_constraintTop_toTopOf="@id/tabsYou" />
+        android:id="@+id/view_pagerYou"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@id/tabsYou"
+        app:layout_constraintTop_toTopOf="@id/tabsYou" />
 </androidx.constraintlayout.widget.ConstraintLayout>
