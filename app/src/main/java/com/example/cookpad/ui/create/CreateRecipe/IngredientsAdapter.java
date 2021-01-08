@@ -15,10 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookpad.R;
 import com.example.cookpad.ui.create.AdapterItem.ItemIngredients;
 
-import org.json.JSONArray;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.MyViewHolder> {
@@ -29,16 +25,6 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     public void add(ItemIngredients itemIngredients) {
         items.add(itemIngredients);
         notifyItemInserted(items.size() - 1);
-    }
-
-    public JSONArray getIngredientsName()
-    {
-        JSONArray ret= new JSONArray();
-        for(int i =0;i<items.size();i++)
-        {
-            ret.put(items.get(i).name);
-        }
-        return ret;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
