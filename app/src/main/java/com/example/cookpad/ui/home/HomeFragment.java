@@ -18,6 +18,7 @@ public class HomeFragment extends Fragment {
     private ViewPager2 viewPager;
     private HomePagerAdapter pagerAdapter;
     private String titles[] = new String[]{"Inspiration", "Your Network"};
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
