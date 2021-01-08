@@ -7,17 +7,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="7">
         <EditText
             android:id="@+id/tv_name"
-            android:layout_weight="4"
+            android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="100g bột"/>
+            android:hint="100 gram flour"/>
         <Button
+            android:id="@+id/btn_deleta_ings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Delete"
-            android:layout_weight="1"/>
+            android:layout_weight="2"/>
     </LinearLayout>
 </LinearLayout>
