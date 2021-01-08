@@ -8,9 +8,6 @@
         android:id = "@+id/UpdateInfo"
         android:title = "Edit Profile"/>
     <item
-        android:id = "@+id/Logout"
-        android:title = "Logout"/>
-    <item
         android:id = "@+id/Statics"
         android:title="Static"
         app:showAsAction="always"
