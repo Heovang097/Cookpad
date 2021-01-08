@@ -1,10 +1,14 @@
 package com.example.cookpad.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cookpad.AccountInfo;
@@ -22,16 +27,26 @@ import com.example.cookpad.R;
 import com.example.cookpad.ui.activity.MainPageActivity;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PeopleActivity extends AppCompatActivity {
     Boolean isFriend;
+    TextView tvNumberFollow;
+    TextView tvNumberFriend;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_people);
-        getSupportActionBar().hide();
-        String id = getIntent().getExtras().getString("id");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xffFFFFFF));
+        tvNumberFollow = findViewById(R.id.peopleNumberFollow);
+        tvNumberFriend = findViewById(R.id.peopleNumberFriend);
+        id = getIntent().getExtras().getString("id");
         CircleImageView avatar = findViewById(R.id.peopleAvatar);
         String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/" + "44341?id=" + id;
         Picasso.get().load(url).into(avatar);
@@ -117,5 +132,43 @@ public class PeopleActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/fnum?id=" + id;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Integer num = response.getInt("follow");
+                    tvNumberFollow.setText(num.toString());
+                    num = (Integer) response.getInt("friend");
+                    tvNumberFriend.setText(num.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("@@@", error.toString());
+            }
+        });
+        queue.add(jsonObjectRequest);
     }
 }

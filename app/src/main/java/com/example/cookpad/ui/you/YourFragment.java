@@ -121,7 +121,7 @@ public class YourFragment extends Fragment {
     private void startFollow(){
         Intent intent = new Intent(getActivity(), FActivity.class);
         intent.putExtra("name", "follow");
-        intent.putExtra("tittle", " Người quan tâm");
+        intent.putExtra("tittle", " Followers");
         intent.putExtra("id", AccountInfo.getAccountInfoHolder().getUserID());
         startActivity(intent);
     }
@@ -129,7 +129,7 @@ public class YourFragment extends Fragment {
     private void startFriend(){
         Intent intent = new Intent(getActivity(), FActivity.class);
         intent.putExtra("name", "friend");
-        intent.putExtra("tittle", " Bạn bếp");
+        intent.putExtra("tittle", " Following");
         intent.putExtra("id", AccountInfo.getAccountInfoHolder().getUserID());
         startActivity(intent);
     }
