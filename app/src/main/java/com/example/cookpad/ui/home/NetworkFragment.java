@@ -69,8 +69,7 @@ public class NetworkFragment extends Fragment {
                         int likeCount = obj.getInt("likeCount");
                         String idUser = obj.getString("idUser");
                         String idRecipe = obj.getString("idRecipe");
-                        Boolean liked = obj.getBoolean("liked");
-                        RecipeCard recipe = new RecipeCard(username, recipeName, likeCount, idUser, idRecipe, liked);
+                        RecipeCard recipe = new RecipeCard(username, recipeName, likeCount, idUser, idRecipe);
                         recipes.add(recipe);
                         if (recyclerAdapter != null)
                             recyclerAdapter.notifyItemInserted(recyclerAdapter.getItemCount() - 1);

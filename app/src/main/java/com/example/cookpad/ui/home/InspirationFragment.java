@@ -1,6 +1,5 @@
 package com.example.cookpad.ui.home;
 
-import com.example.cookpad.AccountInfo;
 import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
 
@@ -52,8 +51,7 @@ public class InspirationFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        String userID = AccountInfo.getAccountInfoHolder().getUserID();
-        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44335?id=" + userID;
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44335";
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -70,8 +68,7 @@ public class InspirationFragment extends Fragment {
                         int likeCount = obj.getInt("likeCount");
                         String idUser = obj.getString("idUser");
                         String idRecipe = obj.getString("idRecipe");
-                        Boolean liked = obj.getBoolean("liked");
-                        RecipeCard recipe = new RecipeCard(username, recipeName, likeCount, idUser, idRecipe, liked);
+                        RecipeCard recipe = new RecipeCard(username, recipeName, likeCount, idUser, idRecipe);
                         recipes.add(recipe);
                         if (recyclerAdapter != null)
                             recyclerAdapter.notifyItemInserted(recyclerAdapter.getItemCount() - 1);

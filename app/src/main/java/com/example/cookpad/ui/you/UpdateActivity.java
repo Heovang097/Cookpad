@@ -1,5 +1,6 @@
 package com.example.cookpad.ui.you;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -42,33 +44,47 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class UpdateActivity extends AppCompatActivity {
+
+    Button mbutton;
+    ImageView mAvatar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
+        mbutton = findViewById(R.id.UpdateAvatarButton);
+        mbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 0);
+            }
+        });
         getSupportActionBar().hide();
         EditText ed = findViewById(R.id.Name);
         ed.setText("abc", TextView.BufferType.EDITABLE);
-        String url = NetWork.getNetworkInfoHolder().getSERVER() + "info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         TextInputEditText name = findViewById(R.id.Name);
         TextInputEditText email = findViewById(R.id.Email);
         TextInputEditText country = findViewById(R.id.Where);
         TextInputEditText intro = findViewById(R.id.Intro);
-        ImageView avatar = (ImageView) findViewById(R.id.UpdateImageView);
+        mAvatar = (ImageView) findViewById(R.id.UpdateImageView);
         ActionMenuItemView item = findViewById(R.id.SaveUpdate);
         SharedPreferences sh = getSharedPreferences("Info", Context.MODE_PRIVATE);
         name.setText(sh.getString("name", ""));
         email.setText(sh.getString("email", ""));
         country.setText(sh.getString("country", ""));
         intro.setText(sh.getString("intro", ""));
-        url = NetWork.getNetworkInfoHolder().getSERVER()+ "44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
+        url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
         Log.d("@@@", url);
-        new DownloadImageTask(avatar).execute(url);
+        new DownloadImageTask(mAvatar).execute(url);
         item.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -83,7 +99,7 @@ public class UpdateActivity extends AppCompatActivity {
         String sIntro =  intro.getText().toString();
         String url = null;
         try {
-            url = NetWork.getNetworkInfoHolder().getSERVER() + "change?id=" + AccountInfo.getAccountInfoHolder().getUserID()
+            url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/change?id=" + AccountInfo.getAccountInfoHolder().getUserID()
                     +"&name="+URLEncoder.encode(sName)+"&email="+URLEncoder.encode(sEmail)+
                     "&country="+URLEncoder.encode(sCountry)+"&intro="+URLEncoder.encode(sIntro);
         } catch (Exception e) {
@@ -136,6 +152,22 @@ public class UpdateActivity extends AppCompatActivity {
         }
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            Uri targetUri = data.getData();
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+                mAvatar.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                //TODO: action
+            }
         }
     }
 }

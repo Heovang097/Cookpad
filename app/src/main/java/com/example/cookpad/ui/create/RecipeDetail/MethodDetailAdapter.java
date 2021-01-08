@@ -51,7 +51,7 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
         holder.myCustomEditTextListener.updatePosition(holder.getAdapterPosition());
         holder.number.setText(items.get(position).getNumber());
         holder.step.setText(items.get(position).getStep());
-        holder.recyclerImage = itemView.findViewById(R.id.rv_step_image_detail);
+        holder.recyclerImage = itemView.findViewById(R.id.rv_step_image);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         holder.recyclerImage.setLayoutManager(mLayoutManager);
         holder.recyclerImage.setItemAnimator(new DefaultItemAnimator());
@@ -98,7 +98,7 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
             step = (TextView) view.findViewById(R.id.tv_step);
             this.myCustomEditTextListener = myCustomEditTextListener;
             step.addTextChangedListener(myCustomEditTextListener);
-            recyclerImage = view.findViewById(R.id.rv_step_image_detail);
+            recyclerImage = view.findViewById(R.id.rv_step_image);
         }
     }
 }

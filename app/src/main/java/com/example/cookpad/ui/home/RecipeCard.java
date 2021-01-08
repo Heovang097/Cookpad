@@ -6,16 +6,6 @@ public class RecipeCard {
     private int like_counter = 69;
     private String idUser = "";
     private String idRecipe = "";
-    private Boolean liked = false;
-
-    public RecipeCard(String username, String recipe_name, int like_counter, String idUser, String idRecipe, Boolean liked) {
-        this.username = username;
-        this.recipe_name = recipe_name;
-        this.like_counter = like_counter;
-        this.idUser = idUser;
-        this.idRecipe = idRecipe;
-        this.liked = liked;
-    }
 
     public RecipeCard(String username, String recipe_name, int like_counter, String idUser, String idRecipe) {
         this.username = username;
@@ -38,10 +28,4 @@ public class RecipeCard {
     public String getIdUser() { return idUser; }
 
     public String getIdRecipe() { return idRecipe; }
-
-    public Boolean isLiked() { return liked; }
-
-    public void setLike() { this.liked = !this.liked; }
-
-    public void setLike_counter(int like_counter) { this.like_counter = like_counter; }
 }
