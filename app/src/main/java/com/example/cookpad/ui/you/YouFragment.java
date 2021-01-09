@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -46,6 +48,7 @@ import com.example.cookpad.ui.you.MyImageFragment;
 import com.example.cookpad.ui.you.MyRecipeFragment;
 import com.example.cookpad.ui.you.SavedRecipeFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -58,9 +61,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
 import static android.content.Context.MODE_PRIVATE;
-public class YouFragment extends Fragment   {
+
+public class YouFragment extends Fragment {
+    private ViewPager2 viewPager2;
+    private YouPagerAdapter youPagerAdapter;
+    private String titles[] = new String[]{"Saved", "My Recipes", "Cooksnaps"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,9 +80,9 @@ public class YouFragment extends Fragment   {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_you, container, false);
-        Toolbar toolbar = (Toolbar) (Toolbar) view.findViewById(R.id.toolbarYou);
+        Toolbar toolbar = view.findViewById(R.id.toolbarYou);
         String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/info?id=" + AccountInfo.getAccountInfoHolder().getUserID();
-        TextView tv = (TextView) view.findViewById(R.id.YouName);
+        TextView tv = view.findViewById(R.id.YouName);
         SharedPreferences sh = getActivity().getSharedPreferences("Info", MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -102,7 +111,6 @@ public class YouFragment extends Fragment   {
         });
         queue.add(jsonObjectRequest);
         url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + AccountInfo.getAccountInfoHolder().getUserID();
-
         CircleImageView avatar = (CircleImageView) view.findViewById(R.id.YouAvater);
         new YouFragment.DownloadImageTask(avatar).execute(url);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -110,11 +118,9 @@ public class YouFragment extends Fragment   {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.YourPage:
-
                         Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_navigation_you_to_navigation_your2);
                         return true;
                     case R.id.UpdateInfo:
-
                         Intent intent = new Intent(getActivity(), UpdateActivity.class);
                         getActivity().startActivityForResult(intent, 10001);
                         //startActivity(intent);
@@ -149,48 +155,19 @@ public class YouFragment extends Fragment   {
                 return false;
             }
         });
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pagerYou);
-        setupViewPager(viewPager);
-        // Set Tabs inside Toolbar
-        TabLayout tabs = (TabLayout) view.findViewById(R.id.tabsYou);
-        tabs.setupWithViewPager(viewPager);
         return view;
     }
-    private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new SavedRecipeFragment(), "Món đã lưu");
-        adapter.addFragment(new MyRecipeFragment(), "Món của tôi");
-        adapter.addFragment(new MyImageFragment(), "Hình thực hành");
-        viewPager.setAdapter(adapter);
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewPager2 = view.findViewById(R.id.view_pagerYou);
+        youPagerAdapter = new YouPagerAdapter(this);
+        viewPager2.setAdapter(youPagerAdapter);
+        TabLayout tabs = view.findViewById(R.id.tabsYou);
+        new TabLayoutMediator(tabs, viewPager2, ((tab, position) -> tab.setText(titles[position]))).attach();
     }
-    static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public Adapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
         public DownloadImageTask(ImageView bmImage) {
