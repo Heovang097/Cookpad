@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -86,6 +87,27 @@ public class NetworkFragment extends Fragment {
         });
         queue.add(jsonObjectRequest);
         recyclerAdapter = new RecyclerAdapter(view.getContext(), recipes);
+
+
+        recyclerAdapter.setOnItemClickListener(new RecyclerAdapter.RecyclerOnItemClickListener() {
+            @Override
+            public void onItemClick(String recipeId) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id", recipeId);
+                Navigation.findNavController(view).navigate(R.id.navigation_recipe_detail, bundle);
+
+                /*FragmentManager fragmentManager = getParentFragmentManager();
+                RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
+                Bundle arguments = new Bundle();
+                arguments.putString("id", recipeId);
+                recipeDetailFragment.setArguments(arguments);
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, recipeDetailFragment).addToBackStack(null);
+                //fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.commit();*/
+            }
+        });
         recyclerView.setAdapter(recyclerAdapter);
     }
 }

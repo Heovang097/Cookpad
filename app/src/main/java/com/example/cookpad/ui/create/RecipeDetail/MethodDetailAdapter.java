@@ -55,7 +55,7 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         holder.recyclerImage.setLayoutManager(mLayoutManager);
         holder.recyclerImage.setItemAnimator(new DefaultItemAnimator());
-        StepImageAdapter stepImageAdapter = new StepImageAdapter(items.get(position).getImagePaths());
+        StepImageAdapter stepImageAdapter = new StepImageAdapter(items.get(position).getImagePaths(),context);
         holder.recyclerImage.setAdapter(stepImageAdapter);
     }
 

@@ -22,8 +22,9 @@ public class StepImageAdapter extends RecyclerView.Adapter<StepImageAdapter.MyVi
 
     private Context context;
 
-    public StepImageAdapter(List<String> imagePaths) {
+    public StepImageAdapter(List<String> imagePaths,Context context) {
         this.imagePaths = imagePaths;
+        this.context = context;
     }
     public StepImageAdapter(View.OnClickListener onClickListener, Context context)
     {
@@ -63,6 +64,9 @@ public class StepImageAdapter extends RecyclerView.Adapter<StepImageAdapter.MyVi
             squareImageViews.add(holder.squareImageView);
             holder.squareImageView.setImageBitmap(bitmaps.get(position));
             holder.squareImageView.setOnClickListener(mOnClickListener);
+        }
+        else if (imagePaths.get(position).length() == 36) {
+            holder.squareImageView.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_step_image));
         }
         else
             Picasso.get().load(imagePaths.get(position)).fit().into(holder.squareImageView);
