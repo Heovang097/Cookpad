@@ -10,13 +10,13 @@
         android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tên món ăn: Cơm mẹ nấu" />
+        android:hint="Your dish title: Beef steak" />
 
     <EditText
         android:id="@+id/et_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Một chút mô tả về món ăn của bạn nhé! Bạn nấu nó trong hoàn cảnh nào? Món ăn này có ý nghĩa là gì?" />
+        android:hint="A little description about your dish, like: what/s the meaning of its name" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,13 +26,13 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Khẩu phần"/>
+            android:text="Ration"/>
         <EditText
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/et_nump"
-            android:hint="2 người" />
+            android:hint="2 people" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,13 +43,13 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Thời gian"/>
+            android:text="Time"/>
         <EditText
             android:id="@+id/et_time"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="1 giờ 30 phút" />
+            android:hint="1 hour 30 min" />
     </LinearLayout>
 
 </LinearLayout>

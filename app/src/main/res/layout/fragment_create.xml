@@ -7,15 +7,13 @@
 
     <!-- TODO: Update blank fragment layout -->
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CREATE RECIPE"
+        android:layout_marginVertical="@dimen/space24"
         android:id="@+id/createRecipeButton"
-        />
-    <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RECIPE DETAIL"
-        android:id="@+id/btn_recipe_detail"
+        android:background="@drawable/rounded_button_white"
+        android:layout_gravity="center"
+        android:text="CREATE RECIPE"
+        android:textColor="#808080"
         />
 </LinearLayout>

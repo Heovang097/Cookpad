@@ -17,8 +17,6 @@ import com.example.cookpad.ui.create.AdapterItem.ItemIngredients;
 
 import org.json.JSONArray;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.MyViewHolder> {

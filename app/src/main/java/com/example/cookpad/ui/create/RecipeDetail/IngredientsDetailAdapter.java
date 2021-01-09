@@ -32,7 +32,7 @@ public class IngredientsDetailAdapter extends RecyclerView.Adapter<IngredientsDe
         }
     }
 
-    public IngredientsDetailAdapter(List<ItemIngredients> items,Context context) {
+    public IngredientsDetailAdapter(List<ItemIngredients> items, Context context) {
         this.items = items;
         this.context = context;
     }

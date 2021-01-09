@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
@@ -29,6 +30,8 @@ import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.cookpad.AccountInfo;
+import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
 import com.example.cookpad.ui.create.CreateRecipe.IngredientsAdapter;
 import com.example.cookpad.ui.create.AdapterItem.ItemIngredients;
@@ -68,6 +71,7 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
     private Button publishButton;
     private Button deleteIngredientButton;
 
+    String mUserID;
     Context mContext = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +90,7 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
         editTextTime = findViewById(R.id.et_time);
         imageViewThumbnail = findViewById(R.id.image);
         imageViewThumbnail.setOnClickListener(this);
-
+        mUserID = AccountInfo.getAccountInfoHolder().getUserID();
         recyclerIngredient = (RecyclerView) findViewById(R.id.recyclerIngredients);
 
         mIngredientAdapter = new IngredientsAdapter(generateIngredientsDummies(),this);
@@ -149,11 +153,14 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
                     String status = result.getString("status");
                     String message = result.getString("message");
 
-                    if (status.equals("404")) {
+                    if (status.equals("200")) {
                         // tell everybody you have succed upload image and post strings
                         Log.i("Messsage", message);
+                        Toast.makeText(mContext,"Successlly uploading recipes",Toast.LENGTH_LONG).show();
+                        finishActivity(0);
                     } else {
                         Log.i("Unexpected", message);
+                        Toast.makeText(mContext,"Error uploading recipes",Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -202,6 +209,7 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
                 Map<String, String> params = new HashMap<>();;
                 params.put("api_token", "gh659gjhvdyudo973823tt9gvjf7i6ric75r76");
                 params.put("recipe_name", editTextTitle.getText().toString());
+                params.put("id",mUserID);
                 return params;
             }
             @Override
@@ -227,14 +235,13 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
                     Toast.makeText(mContext, "JSON Error", Toast.LENGTH_SHORT).show();
                 }
                 params.put("json",new DataPart("metadata.json",jsonObject.toString().getBytes()));
-                params.put("thumbnail", new DataPart("thumbnail.jpg", AppHelper.getFileDataFromDrawable(getBaseContext(), getDrawable(R.drawable.pho_bo)), "image/jpeg"));
-                for(Map.Entry<String,Bitmap> entry:mMethodAdapter.images.entrySet())
-                    params.put(entry.getKey(),new DataPart(entry.getKey()+".jpg",AppHelper.getFileDataFromBitmap(getBaseContext(),entry.getValue())));
+                params.put("thumbnail", new DataPart("thumbnail.jpg", AppHelper.getFileDataFromDrawable(getBaseContext(), imageViewThumbnail.getDrawable()), "image/jpeg"));
+                for(Map.Entry<String, Drawable> entry:mMethodAdapter.getImages().entrySet())
+                    params.put(entry.getKey(),new DataPart(entry.getKey()+".jpg",AppHelper.getFileDataFromDrawable(getBaseContext(),entry.getValue())));
                 //params.put("cover", new DataPart("file_cover.jpg", AppHelper.getFileDataFromDrawable(getBaseContext(), mCoverImage.getDrawable()), "image/jpeg"));
                 return params;
             }
         };
-
         VolleySingleton.getInstance(mContext).addToRequestQueue(multipartRequest);
     }
 
@@ -244,7 +251,13 @@ public class CreateRecipeActivity extends AppCompatActivity implements View.OnCl
         switch(v.getId())
         {
             case R.id.publishRecipeButton:
-                uploadData("http://192.168.1.85:8999/44419");
+                if(editTextTitle.getText().toString().equals(""))
+                    Toast.makeText(mContext, "Title cannot be emmpty", Toast.LENGTH_LONG).show();
+                else
+                {
+                    uploadData("http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44419");
+                    Toast.makeText(mContext, "Please wait...", Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.addIngredientButton:
                 mIngredientAdapter.add(new ItemIngredients(""));
