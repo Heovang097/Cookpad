@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -14,10 +16,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.cookpad.AccountInfo;
 import com.example.cookpad.NetWork;
 import com.example.cookpad.R;
 import com.example.cookpad.ui.home.RecipeCard;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -64,6 +76,36 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 //        Picasso.get().load("http://192.168.1.124:8012/44341?id=" + card.getIdUser()).fit().into(holder.avatar);
         Picasso.get().load("http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44340?id=" + card.getIdRecipe()).fit().into(holder.recipeImage);
         Picasso.get().load("http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44341?id=" + card.getIdUser()).fit().into(holder.avatar);
+        holder.heart.setChecked(card.isLiked());
+        holder.heart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String state = "";
+                if (isChecked) state = "1"; else state = "0";
+                String url = "http://" + NetWork.getNetworkInfoHolder().getSERVER() + "/44337?uid=" + AccountInfo.getAccountInfoHolder().getUserID() + "&rid=" + card.getIdRecipe() + "&state=" + state;
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String res = response.getString("res");
+                            int likeCounter = response.getInt("likeCount");
+                            holder.like.setText(String.valueOf(likeCounter));
+                            card.setLike_counter(likeCounter);
+                            card.setLike();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                requestQueue.add(jsonObjectRequest);
+            }
+        });
     }
 
     @Override
@@ -78,6 +120,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         ImageView avatar;
         ImageButton overflowButton;
         TextView like;
+        CheckBox heart;
         String recipeId=null;
 
         public ViewHolder(@NonNull View itemView) {
@@ -88,6 +131,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             avatar = itemView.findViewById((R.id.avatar));
             overflowButton = itemView.findViewById((R.id.overflow_button));
             like = itemView.findViewById(R.id.likeCounter);
+            heart = itemView.findViewById(R.id.likeIcon);
             itemView.setOnClickListener(this);
         }
 
